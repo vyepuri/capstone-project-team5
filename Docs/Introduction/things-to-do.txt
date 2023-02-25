@@ -1,0 +1,61 @@
+1) discussion section :
+https://www.comp.nus.edu.sg/~tulika/WOSET_MORPHER_2022.pdf
+
+look at this paper: 
+Add two section similar to 
+III-A,B,C for our compiler backend 
+
+ekhane kivabe frontend er sathe connect kora jay setar ekta example dibo. parser er kothay kpthay add kora lageb seta o dibo. 
+notun algrotihm kivabe lekha jay seta bolbo. algorithm interface er ekta bibiroton dibo 
+
+algorithm (input)
+
+a) extending P4C 
+b) even bolbo j keu jodi drastically notun match type likhte pare. jemon cptrie or pop trie taileo jeno use kora jay seta o possible 
+ota o likhbo. r bolbo j hls er karone j keu notun match type banata pare
+
+
+Lera --sigcomm
+ μP4--- sigcom
+ macsad -- sigcom -- section 1 last 2 para. rmt support korena
+
+ etar sathe proposal a amra compiler er kotogula list banaichi j konogula propritery and open source. sheguor table bosate hobe. 
+
+
+
+ --- hls for packet processing : 
+ they have difrnt goal. they do not target to fit in in an exact pipeline. besides this they mostly focus on forming the problem as ILP. but 
+ not provides interfaces for new algorithm, 
+ eta blla jay ki na dekho j , oder kaj mainly sketch use kore. so onnano graph algorothm use kora jay na easily. 
+
+
+
+
+
+ in intro say extending previous work 
+
+
+
+
+ future research direction add korte hobe. 
+ ---- new algo for faster. 
+ ---- stateful vs non stateful p4 program does they have any classification that can help 
+ ----- config gen phase is not handld. it cal also help in faster and correct simulation. bmv2 does not provide 
+ cycle level accurate simulation. can we do that? 
+ --- can we support new hardware such as CGRA or FPGA? 
+ --- legacy hardware support using SAI interface. a lot of vendors follows this approach. can we map the P4 constructs into 
+ sai interface? These hardwares can have even more sphisiticated and optimized hardware for supporting complex protocols. 
+
+
+
+%===================================
+
+ sob koyta problem er ilp formation deya jte apare
+ --- parser: desingn principles for packet parser er ekta section ache "Efficient table generation". eta k 
+ problem statement nam diye rephrase kora jete pare.
+ -- tdg : problem statemet a bolote pari j, ei problem ta k ilp hishbee formulate kora jay ebong packet processing latency 
+ ebong power er jonno optimization problem hishebe dekhano jay. already duita work ache tai amra ekhane eta k r present korlam na. 
+ section v-c e amra ljose r pape rer moto kore age bolte pari j embedding problem ta asole ki. then algorithm er description a jabo. 
+ 
+
+ algorithm er description a parameer gulo k ki use kora jay?
