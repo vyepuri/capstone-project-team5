@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.2.24)  24 FEB 2023 17:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 22.10) (preloaded format=pdflatex 2023.2.24)  24 FEB 2023 19:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -810,19 +810,19 @@ Package caption Info: End \AtBeginDocument code.
 
 
 ]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 198
+LaTeX Font Info:    Trying to load font information for U+msa on input line 195
 .
 
 (C:\Users\13305\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 198
+LaTeX Font Info:    Trying to load font information for U+msb on input line 195
 .
 
 (C:\Users\13305\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (10.51315pt too wide) in paragraph at lines 198--210
+Overfull \hbox (15.99316pt too wide) in paragraph at lines 195--207
  [][] 
  []
 
@@ -831,19 +831,19 @@ Overfull \hbox (10.51315pt too wide) in paragraph at lines 198--210
 ] (Compiler.aux) ) 
 Here is how much of TeX's memory you used:
  18373 strings out of 475385
- 358414 string characters out of 2776907
- 690309 words of memory out of 3000000
+ 358367 string characters out of 2776907
+ 689309 words of memory out of 3000000
  39457 multiletter control sequences out of 15000+600000
  503449 words of font info for 92 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 100i,10n,104p,1687b,560s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 100i,10n,104p,2424b,560s stack positions out of 10000i,1000n,20000p,200000b,80000s
 {C:/Users/13305/AppData/Local/Programs/MiKTeX/fonts/enc/dvips
 /base/8r.enc}<C:/Users/13305/AppData/Local/Programs/MiKTeX/fonts/type1/urw/time
 s/utmb8a.pfb><C:/Users/13305/AppData/Local/Programs/MiKTeX/fonts/type1/urw/time
 s/utmbi8a.pfb><C:/Users/13305/AppData/Local/Programs/MiKTeX/fonts/type1/urw/tim
 es/utmr8a.pfb><C:/Users/13305/AppData/Local/Programs/MiKTeX/fonts/type1/urw/tim
 es/utmri8a.pfb>
-Output written on Compiler.pdf (3 pages, 72939 bytes).
+Output written on Compiler.pdf (3 pages, 72988 bytes).
 PDF statistics:
  36 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
