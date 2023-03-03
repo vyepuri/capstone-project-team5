@@ -1,0 +1,39 @@
+\begin{thebibliography}{1}
+
+\bibitem{vayghan2019microservice}
+Leila~Abdollahi Vayghan, Mohamed~Aymen Saied, Maria Toeroe, and Ferhat Khendek.
+\newblock Microservice based architecture: Towards high-availability for
+  stateful applications with kubernetes.
+\newblock In {\em 2019 IEEE 19th international conference on software quality,
+  reliability and security (QRS)}, pages 176--185. IEEE, 2019.
+
+\bibitem{sharma2020docker}
+Vivek Sharma, Harsh~Kumar Saxena, and Akhilesh~Kumar Singh.
+\newblock Docker for multi-containers web application.
+\newblock In {\em 2020 2nd International Conference on Innovative Mechanisms
+  for Industry Applications (ICIMIA)}, pages 589--592. IEEE, 2020.
+
+\bibitem{zhang2019grit}
+Guogen Zhang, Kun Ren, Jung-Sang Ahn, and Sami Ben-Romdhane.
+\newblock Grit: consistent distributed transactions across polyglot
+  microservices with multiple databases.
+\newblock In {\em 2019 IEEE 35th International Conference on Data Engineering
+  (ICDE)}, pages 2024--2027. IEEE, 2019.
+
+\bibitem{medel2016modelling}
+V{\'\i}ctor Medel, Omer Rana, Jos{\'e}~{\'A}ngel Ba{\~n}ares, and Unai
+  Arronategui.
+\newblock Modelling performance \& resource management in kubernetes.
+\newblock In {\em Proceedings of the 9th International Conference on Utility
+  and Cloud Computing}, pages 257--262, 2016.
+
+\bibitem{amaral2015performance}
+Marcelo Amaral, Jorda Polo, David Carrera, Iqbal Mohomed, Merve Unuvar, and
+  Malgorzata Steinder.
+\newblock Performance evaluation of microservices architectures using
+  containers.
+\newblock In {\em 2015 ieee 14th international symposium on network computing
+  and applications}, pages 27--34. IEEE, 2015.
+
+
+\end{thebibliography}
