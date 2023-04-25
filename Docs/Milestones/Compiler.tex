@@ -1,0 +1,315 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Template for USENIX papers.
+%
+% History:
+%
+% - TEMPLATE for Usenix papers, specifically to meet requirements of
+%   USENIX '05. originally a template for producing IEEE-format
+%   articles using LaTeX. written by Matthew Ward, CS Department,
+%   Worcester Polytechnic Institute. adapted by David Beazley for his
+%   excellent SWIG paper in Proceedings, Tcl 96. turned into a
+%   smartass generic template by De Clarke, with thanks to both the
+%   above pioneers. Use at your own risk. Complaints to /dev/null.
+%   Make it two column with no page numbering, default is 10 point.
+%
+% - Munged by Fred Douglis <douglis@research.att.com> 10/97 to
+%   separate the .sty file from the LaTeX source template, so that
+%   people can more easily include the .sty file into an existing
+%   document. Also changed to more closely follow the style guidelines
+%   as represented by the Word sample file.
+%
+% - Note that since 2010, USENIX does not require endnotes. If you
+%   want foot of page notes, don't include the endnotes package in the
+%   usepackage command, below.
+% - This version uses the latex2e styles, not the very ancient 2.09
+%   stuff.
+%
+% - Updated July 2018: Text block size changed from 6.5" to 7"
+%
+% - Updated Dec 2018 for ATC'19:
+%
+%   * Revised text to pass HotCRP's auto-formatting check, with
+%     hotcrp.settings.submission_form.body_font_size=10pt, and
+%     hotcrp.settings.submission_form.line_height=12pt
+%
+%   * Switched from \endnote-s to \footnote-s to match Usenix's policy.
+%
+%   * \section* => \begin{abstract} ... \end{abstract}
+%
+%   * Make template self-contained in terms of bibtex entires, to allow
+%     this file to be compiled. (And changing refs style to 'plain'.)
+%
+%   * Make template self-contained in terms of figures, to
+%     allow this file to be compiled. 
+%
+%   * Added packages for hyperref, embedding fonts, and improving
+%     appearance.
+%   
+%   * Removed outdated text.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[lettersize,journal]{IEEEtran}
+% \usepackage{usenix2019_v3}
+
+% to be able to draw some self-contained figs
+\usepackage{tikz}
+\usepackage{amsmath}
+
+% inlined bib file
+\usepackage{filecontents}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+% \usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{tabularx}
+\usepackage{subcaption}
+\usepackage{makecell}
+\usepackage{url}
+\usepackage[switch]{lineno}
+% \linenumbers
+\usepackage{listings}
+\usepackage{multirow}
+% \usepackage[xcdraw]{xcolor}
+\usepackage{graphicx}
+% \usepackage{textcomp}
+% \usepackage{tabularx}
+% \usepackage{adjustbox}
+
+\captionsetup{compatibility=false}
+\usepackage[margin=0.5in]{geometry}
+\usepackage{textcomp}
+
+% \usepackage{bera}% optional: just to have a nice mono-spaced font
+\usepackage{listings}
+% \usepackage{xcolor}
+\usepackage{tikz}
+\def\checkmark{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;} 
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{EEEEEE}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+\graphicspath{ {./images/} }
+% %-------------------------------------------------------------------------------
+% \begin{filecontents}{\jobname.bib}
+% %-------------------------------------------------------------------------------
+% @Book{arpachiDusseau18:osbook,
+%   author =       {Arpaci-Dusseau, Remzi H. and Arpaci-Dusseau Andrea C.},
+%   title =        {Operating Systems: Three Easy Pieces},
+%   publisher =    {Arpaci-Dusseau Books, LLC},
+%   year =         2015,
+%   edition =      {1.00},
+%   note =         {\url{http://pages.cs.wisc.edu/~remzi/OSTEP/}}
+% }
+% @InProceedings{waldspurger02,
+%   author =       {Waldspurger, Carl A.},
+%   title =        {Memory resource management in {VMware ESX} server},
+%   booktitle =    {USENIX Symposium on Operating System Design and
+%                   Implementation (OSDI)},
+%   year =         2002,
+%   pages =        {181--194},
+%   note =         {\url{https://www.usenix.org/legacy/event/osdi02/tech/waldspurger/waldspurger.pdf}}}
+% \end{filecontents}
+
+
+\begin{document}
+
+\title{ Containerization of a polyglot microservice application using
+Docker and Kubernetes 
+}
+
+\author{Vamsi Krishna Yepuri,  Venkata Kalyan Polamarasetty, Shivani Donthi, Ajay Kumar Reddy Gondi \\
+Kent State University}
+        % <-this % stops a space
+% \thanks{This paper was produced by the IEEE Publication Technology Group. They are in Piscataway, NJ.}% <-this % stops a space
+% \thanks{Manuscript received April 19, 2021; revised August 16, 2021.}}
+
+% The paper headers
+%\markboth{Journal of \LaTeX\ Class Files,~Vol.~14, No.~8, August~2021}%
+%{Shell \MakeLowercase{\textit{et al.}}: A Sample Article Using IEEEtran.cls for IEEE Journals}
+
+% \IEEEpubid{0000--0000/00\$00.00~\copyright~2021 IEEE}
+% Remember, if you use this you must call \IEEEpubidadjcol in the second
+% column for its text to clear the IEEEpubid mark.
+
+\maketitle
+
+%-------------------------------------------------------------------------------
+\begin{abstract}
+  %-------------------------------------------------------------------------------
+  
+This project investigates the benefits of containerization technology in modern software development and deployment. The study emphasizes the advantages of using Kubernetes and Docker in the development process, including the easy packaging and deployment of microservices, efficient resource utilization, faster startup times, and greater scalability and flexibility. The project concludes by proposing a study that involves creating a polyglot microservice application using Java, Python, and JavaScript, containerizing it with Docker, and deploying it in Kubernetes. The study aims to evaluate service discovery and auto-scaling in distributed mode and compare the performance metrics with virtual machines and containers. The results of this study can inform software development teams about the benefits of containerization in modern software development and deployment.
+
+  
+\end{abstract}
+
+\begin{IEEEkeywords}
+  Docker, Kubernetes, Containers,  Microservices, 
+   Polyglot
+  \end{IEEEkeywords}
+
+\maketitle
+
+
+%-------------------------------------------------------------------------------
+\section{Introduction}
+%-------------------------------------------------------------------------------
+Containerization has transformed software development and deployment with Docker being one of the most widely adopted open-source platforms for building, shipping, and running distributed applications. However, as containerized applications become more complex, managing them at scale can be a challenge. Kubernetes, an open-source container orchestration system, provides a platform for managing and deploying containerized applications at scale. Its popularity is attributed to its ability to automate deployment, scaling, and management of containerized applications, with features like automatic load balancing, scaling, and self-healing. Trends in Kubernetes technology include the adoption of serverless computing, which enables developers to run their code in lightweight containers without managing infrastructure or container orchestration. Kubernetes also finds use in hybrid and edge computing, where computing resources are distributed across multiple devices and locations, demonstrating its versatility and adaptability to modern software development and deployment needs.
+
+
+Public cloud providers have played a significant role in the adoption and advancement of container technology. They offer container services that allow developers to deploy, manage, and scale containerized applications, which have reduced the barrier of entry to container adoption, making them available to businesses of all sizes. These providers have also been instrumental in promoting container standards and enabling interoperability, contributing to the adoption of Kubernetes as the de facto standard for container orchestration. Standardization of container orchestration simplifies the deployment and management of containerized applications across different cloud providers and on-premises environments.
+
+
+Containers provide a variety of benefits in microservices architecture, with one of the most significant being the ease of packaging and deploying microservices. Each microservice can be packaged as a container image, which abstracts it from the underlying infrastructure and makes it simpler to deploy and run the services across various environments without compatibility issues. For example, consider an e-commerce application based on microservices, with various services such as product catalogs, shopping carts, payment processing, and order management. Each of these services can be containerized, making it easy to deploy and update them independently. This enables developers to add new features or modify existing ones without impacting other services.
+
+
+Additionally, containers provide a high degree of isolation between microservices, minimizing conflicts and dependencies between them. By packaging each service as a container, they can each run their own instance of the required database, without impacting the other services in the system. As a result, containers provide greater agility, scalability, and consistency in a microservices project, allowing developers to focus on developing and updating microservices rather than the infrastructure and deployment processes.
+
+
+The use of virtual machines (VMs) can present challenges when it comes to running applications, as VMs require their own operating system and consume significant amounts of CPU, memory, and storage resources, which can result in slower application performance and increased complexity. This can be solved through the use of container technology, which allows multiple containers to share the same operating system kernel, leading to better resource utilization and faster startup times for applications, and ultimately greater scalability, flexibility, and cost efficiency.
+
+
+For instance, consider a data analytics application that needs to process a large amount of data quickly and efficiently. If the application runs on a virtual machine, it may suffer from slower performance due to the overhead and complexity of running a full operating system. By using container technology, however, developers can run multiple lightweight containers on the same host operating system, resulting in faster performance, lower resource usage, and greater scalability for the application, allowing for faster data processing and analysis.
+
+
+Achieving container capabilities with virtual machines is challenging due to the fundamental differences between the two technologies. Containers are lightweight and efficient, sharing the same operating system kernel as the host machine, while virtual machines emulate an entire hardware environment, including a separate operating system, which can lead to higher resource usage and greater complexity. Additionally, virtual machines lack portability and flexibility as each one requires a specific configuration of hardware and operating system, making it difficult to move or replicate them across different environments. Containers, on the other hand, can be easily packaged and deployed on any host system that supports the same container runtime. Although virtual machines have their own strengths and use cases, containers are preferred for most modern applications due to their greater efficiency, flexibility, and portability, and because they can start up much more quickly, making them better suited for modern application deployment and scaling.
+
+
+The traditional monolithic application approach involves building a single, comprehensive app, which can be time-consuming to develop and maintain, making it challenging to achieve agility. To address these issues and achieve greater flexibility and ease of maintenance, the world is moving towards microservices. In the era of microservices, numerous independent modules are set up in traditional virtual machines, which can lead to conflicting libraries and make the process of provisioning, scaling, service discovery, load balancing, and deployment manual and time-consuming. To solve these problems, microservices can be packed in containers instead of virtual machines, which will help to address conflicts and create independence between each microservice. Workloads can be run in a scalable and distributed manner using Kubernetes, which can solve auto-scaling and service discovery issues. This project involves building a polyglot microservice application from the ground up using Java, Python, and JavaScript, containerizing it with Docker, and deploying it in Kubernetes to examine service discovery and auto-scaling in distributed mode, while comparing the performance differences between the containerized technique and the traditional virtual machine strategy.
+
+
+In this project, we aim to compare the performance of virtual machines and containers using several metrics. Firstly, we will examine the resource utilization of the microservice application between the two technologies, analyzing the CPU, memory, and storage usage to determine which technology is more efficient. Secondly, we will compare the startup time and scaling capabilities of virtual machines and containers to see which is faster and more scalable. Thirdly, we will examine the storage space utilized by both virtual machines and containers to see which technology uses storage more effectively. Finally, we will evaluate the portability of both virtual machines and containers and their ability to be moved across different environments. By comparing these performance metrics, we aim to determine which technology is more suitable for our microservice application and gain insights into the strengths and weaknesses of each technology.
+
+%-------------------------------------------------------------------------------
+\section{Related Work}
+%-------------------------------------------------------------------------------
+Microservices, Docker, Kubernetes, and polyglots are some of the major collectively used technologies in the field of software development. There are many works that can be found on these topics which demonstrate the purpose of a shift towards the docker and Kubernetes along with the challenges involved in the approaches. The importance of adopting a microservice-based architecture to achieve high availability for stateful applications in Kubernetes is explained in    ~\cite{vayghan2019microservice}. The challenges of managing stateful microservices in Kubernetes and also proposed a solution to improve their availability using a State Controller but did not mention the performance of Stateless polyglot micro service. In ~\cite{sharma2020docker}, presented a case study of a web application that consists of several microservices, each running in a separate container, and highlighted the  improved portability, scalability, and flexibility. There are some situations that demand the use of polyglots in order to achieve the desired solutions. ~\cite{zhang2019grit} discussed the approaches for achieving consistent distributed transactions across polyglot microservices that use multiple databases and addressed the challenges in distributed transactions in a polyglot environment. ~\cite{medel2016modelling} proposes a performance model to analyze resource management in Kubernetes clusters. The model uses queuing theory and stochastic processes to represent the resource utilization of nodes and pods. The proposed model is validated through experiments that compare its accuracy against the real system performance. The paper highlights the importance of having an accurate performance model to optimize resource allocation and improve the overall efficiency of Kubernetes clusters. Also in ~\cite{amaral2015performance} the evaluation of the performance of microservices architectures using containers, specifically Docker. The authors conduct experiments to compare the performance of a monolithic application with a microservices-based application, both deployed on Docker. The experiments involve measuring the response time and throughput of the applications under various workloads. The results of the experiments demonstrate that the microservices architecture outperforms the monolithic architecture in terms of response time and scalability. 
+Overall, the use of microservices, Docker, Kubernetes, and polyglots in software development has become increasingly popular in recent years due to their benefits in terms of portability, scalability, and flexibility. However, there are also challenges involved in using these technologies, such as managing stateful microservices in Kubernetes and achieving consistent distributed transactions across polyglot microservices. To address these challenges, researchers have proposed various solutions and approaches, such as using a State Controller to improve the availability of stateful microservices in Kubernetes and developing a performance model to optimize resource allocation in Kubernetes clusters. In addition, studies have been conducted to evaluate the performance of microservices architectures using containers like Docker, and the results have shown that microservices architectures can outperform monolithic architectures in terms of response time and scalability. Overall, the adoption of microservices, Docker, Kubernetes, and polyglots in software development is likely to continue to grow as more organizations seek to achieve the benefits these technologies provide while also addressing the challenges involved in their use.
+
+From \emph{TABLE I: Related Work}, we can see the different features implemented by the referenced papers and the features that are implemented in this project.
+Our proposed solution will be dealing with a stateless polyglot micro service, containerized used docker, and Kubernetes. We deploy our application and analyze the improved performance using Kubernetes.
+
+\begin{table}[h]
+  \centering{
+  \begin{tabular}{|l|l|l|l|l|l|} 
+  \hline
+  Reference & Microservices & Stateless & Container & Kubernetes & Polyglot  \\ \hline
+  ~\cite{vayghan2019microservice} & \checkmark & X & \checkmark & \checkmark  & X \\ \hline 
+   ~\cite{sharma2020docker} & X & \checkmark & \checkmark & X  & X \\ \hline
+  ~\cite{zhang2019grit} & X & X & \checkmark & X  & X \\ \hline 
+   ~\cite{medel2016modelling} & \checkmark & \checkmark & \checkmark & \checkmark  & X \\ \hline
+  ~\cite{amaral2015performance} & \checkmark & X & \checkmark & X  & \checkmark \\ \hline
+Our Project & \checkmark & \checkmark & \checkmark & \checkmark  & \checkmark \\ \hline
+     
+  \end{tabular}
+  }
+\caption{Related Work}
+\end{table}
+%-------------------------------------------------------------------------------
+\section{Project background}
+%-------------------------------------------------------------------------------
+The trend towards microservices architecture has become more and more popular in recent years, as it allows organizations to develop, deploy, and manage large, complex applications in a more agile and efficient manner. However, one of the challenges of implementing a microservices architecture is managing the deployment and scaling of individual services in a way that is both effective and efficient. This is where containerization and container orchestration tools like Docker and Kubernetes come into play. In this project, we are going to show the analysis of performance improvement with the use of container orchestration tools.
+
+\subsection{ Microservice vs Monolithic architecture}
+Monolithic and microservice architectures are two different approaches to designing and building software systems. A monolithic architecture is a traditional approach where an application is built as a single unit, while a microservice architecture is an approach where an application is broken down into smaller independent services. \emph{Fig. 1: Monolithic vs Microservices} shows the difference between monolithic and microservice-based architecture. The monolithic approach is easier to develop and deploy but can become difficult to maintain and scale as the application grows. On the other hand, the microservice approach offers greater flexibility, scalability, and resilience but requires coordination between different teams. The choice of architecture depends on the specific needs and requirements of the application, with monolithic being better suited for smaller applications and microservices for larger, complex applications.
+
+\begin{figure}
+\centering
+\includegraphics[width=9cm, height=5.5cm]{monolith-vs-microservices}
+\caption{Monolithic vs Microservices}
+\end{figure}
+
+\cite{escobar2016towards}explains the process of transforming monolithic applications into microservices and provides a framework for understanding the migration process. It discusses the benefits and challenges of adopting a microservices architecture.
+
+\subsection{ Polyglot microservices}
+Polyglot Microservices refer to a software architecture that involves using multiple programming languages and technologies to build independent, small-sized services that work together to accomplish a larger goal. \emph{Fig.2 : Polyglot microservices} represents polyglot microservices. This approach allows developers to choose the best language and tools for each service, rather than being limited to a single technology stack. Polyglot microservices are becoming increasingly popular because they offer several benefits, such as increased flexibility, improved scalability, and better fault tolerance. They can be designed to communicate with each other through APIs, message queues, or other protocols, which enables them to work together as a cohesive system.
+While there are challenges to building and managing polyglot microservices, such as the need to manage multiple programming languages and tools, these can be overcome with the right approach and tools. As a result, many organizations are adopting this approach to build more resilient and adaptable software systems.
+
+\begin{figure}
+\centering
+\includegraphics[width=5.5cm, height=6cm]{polyglot_microservices}
+\caption{Polyglot Microservices}
+\end{figure}
+
+The methods for achieving consistent distributed transactions across polyglot microservices that use several databases were covered in  ~\cite{zhang2019grit}, which also addressed the challenges of distributed transactions in a polyglot environment.
+
+\subsection{ Container}
+A container is a lightweight, standalone, and executable package of software that includes everything needed to run an application, such as code, libraries, and system tools. Containers provide a consistent runtime environment, ensuring that the application can run reliably regardless of the underlying system's configuration. \emph{Fig. 3: Virtual Machine vs Container} shows the difference between a virtual machine and a container.
+~\cite{siddiq2014comprehen} is a comprehensive report on the use of container technology in modern software development. It covers various aspects of container technology, including its history, benefits, challenges, and future trends. The goal of containerization is to package each service and its dependencies into a lightweight, portable container that can run on any machine or cloud environment. 
+
+\begin{figure}
+\centering
+\includegraphics[width=9cm, height=5cm]{vitualmachine-vs-dockercontainer}
+\caption{Virtual Machine vs Container}
+\end{figure}
+
+Docker is widely used as a containerization platform because it offers a reliable and reproducible setting for running applications. Docker makes it simple to create, deploy, and manage images, which makes it easier to develop and test applications across different environments. A Docker container is a self-contained software package that operates independently of other containers and the host system. It has its own network, file system, and resources, making it perfect for deploying applications with specific requirements. Docker images serve as snapshots of an application's file system, and they can be created using a Dockerfile script. Images can be utilized to start one or more containers. Docker containers have advantages such as portability, consistency, isolation, resource efficiency, and scalability, while their disadvantages include complexity, a learning curve, security concerns, dependency management challenges, and limited access to hardware resources.
+
+\subsection{Kubernetes and Docker}
+Kubernetes is an open-source platform for container orchestration, which automates the deployment, scaling, and management of containerized applications.\emph{Fig. 4: Docker vs Kubernetes} shows the difference between docker and Kubernetes and how Kubernetes is used in a distributed environment and orchestrating the docker containers. It provides a framework for deploying, scaling, and managing multiple containers across a cluster of servers, allowing organizations to run and manage their microservices at scale.
+~\cite{kho2018auto} explains how Docker and Kubernetes can be used to automate the scaling of a defense application in a cloud environment. It highlights the benefits of these tools, such as improved security and reliability, and provides a detailed deployment process.
+
+\begin{figure}
+\centering
+\includegraphics[width=9cm, height=4.5cm]{docker-vs-kubernetes}
+\caption{Docker vs Kubernetes}
+\end{figure}
+
+In the case of a polyglot microservices application, where multiple programming languages and frameworks are used to develop individual services, containerization, and container orchestration can be particularly valuable. Docker and Kubernetes enable organizations to easily package and deploy services written in different languages or frameworks while ensuring that each service runs in a consistent and isolated environment. This makes it easier to manage dependencies, test and deploy services, and scale applications as needed.
+
+Overall, the containerization of a polyglot microservices application using Docker and Kubernetes can help organizations achieve greater agility, scalability, and reliability in their software development and deployment processes. It can also help reduce the complexity of managing and scaling multiple services, which can be particularly challenging in a polyglot environment.
+\section{Infrastructure}
+The infrastructure required for containerization using Docker and Kubernetes typically includes :
+
+a. physical or virtual machines,
+
+b. storage systems, and 
+
+c. networking components. 
+
+Physical or virtual machines are needed to host containerized applications. These machines should have sufficient CPU, memory, and storage to run the application and the containers. Storage systems are necessary to store the container images, as well as any data or files that the application needs to access. The storage should be accessible to all the machines in the infrastructure. Networking components such as load balancers and firewalls are also required to ensure that traffic can be routed to the appropriate containers and that the network is secure.
+We also need a cloud engine, for that we are using GCP. Google Cloud Platform (GCP) is a cloud provider that offers a range of services for hosting and managing applications, data, and infrastructure in the cloud. GCP provides tools and services such as Google Kubernetes Engine (GKE), Google Container Registry (GCR), and Cloud Storage that are well-suited for containerization using Docker and Kubernetes. Additionally, GCP provides tools for monitoring and managing containerized applications, such as Stackdriver Monitoring and Logging, and Cloud Trace for application tracing.
+
+There are examples provided in ~\cite{gupta2020deploy} describe the steps to deploy a web application using Google Cloud Platform, which involves creating a new project, enabling necessary APIs, choosing a deployment method, creating an instance or app, configuring it, and deploying the application. Once deployed, the application can be managed and monitored through the Google Cloud Platform.
+
+Also, the GCP services used were VPC networks (Virtual Private Cloud Networks) and Compute Engine. VPC networks allow for the creation of private virtual networks within GCP, while Compute Engine provides virtual machines with configurable amounts of CPU, memory, and storage for running Kubernetes and deploying applications and services.
+\begin{figure}
+    \centering
+    \includegraphics[width=10cm, height=5.8cm]{images/MS_architecture.png}
+    \caption{Bookstore application Architecture}
+    \label{fig:my_label}
+\end{figure}
+\section{System Architecture}
+To carry out a test of Docker and Kubernetes with an application in our scenario, it is necessary to have a polyglot microservice application that is designed with various programming languages. The bookstore application comes into picture here. The bookstore application has been designed to offer its customers a convenient way to browse and purchase books online as a polyglot microservice. Four microservices are being used to fulfill the result of the application as seen in Fig.5 which are developed in multiple programming languages and using scripts. They are the user service, orders service, books service, and the bookstore UI service. The data is stored in the central repository of a database. The microservices are all connected to one another to communicate between them using REST APIs.
+\begin{figure}
+    \centering
+    \includegraphics[width=9cm, height=5.8cm]{images/Docker_architecture.jpg}
+    \caption{Architecture of Bookstore application on single-node Docker system}
+    \label{fig:my_label}
+\end{figure}
+Let us suppose that the bookstore application is deployed on a single-node Docker system as shown in Fig.6. Docker containers are lightweight and standalone virtual machines that can run on any computer. The Docker engine effectively manages these containers and ensures that they have access to the necessary resources, such as memory and CPU, while keeping them isolated from each other. By running multiple containers on the same machine, each with its own set of dependencies and configurations, applications can be easily deployed and managed without having to worry about conflicts between different software components. All the services with the source code and Dockerfile are built using the Docker container platform. Once the build is completed, the data is pushed to the central repository of the Docker hub.  This eliminates the need to download and configure software dependencies for each microservice individually, making deployment more efficient and less time-consuming. With the required software already pre-packaged into the images, it's simply a matter of pulling the necessary images and running them in the Docker container. To run the bookstore application, all the microservices required images that are saved on Docker Hub are set to run by using the docker run command. The containers are created once the docker run with the image name saved in the Docker hub command is given. The main reason of moving from the single-node Docker system to Kubernetes is that it can provide several benefits such as scalability, high availability, resource efficiency, service discovery for more complex applications with higher demands from the user. By distributing the workload across multiple nodes, Kubernetes can handle much larger workloads than a single-node Docker system, making it an ideal choice for applications with rapidly increasing traffic. The automatic detection and recovery features of Kubernetes can help maintain application availability, reduce downtime, and minimize the need for manual intervention.
+
+The bookstore application can be deployed on Kubernetes. For the multiple nodes, we are using the Google Cloud platform - GCP as shown in Fig.7. The system starts with the creation of a VPC network, which is a virtual private network for Google Cloud resources. This network provides a private network space for the deployment of Kubernetes clusters. A Kubernetes cluster is then deployed on the VPC network with 1 master node and 2 slave nodes. This cluster consists of one or more nodes, where each node is a virtual machines (VMs). Each virtual machine runs a Kubernetes node, which is responsible for running pods and managing the resources of the virtual machine. Utilizing compute engine in GCP, a kubernetes master node is  deployed, which manages the Kubernetes API server, controller, scheduler, and the etcd database. The API server is responsible for receiving and processing requests from its clients, while etcd stores configuration data and metadata for the Kubernetes cluster. The controller sends the commands to the slave nodes.  For example, if the image is to be deployed in the slave node, the controller sends a command to the kubelet in the slave node to implement the process. The scheduler is used while the initial creation of the pods in the slave nodes to configure the placement of the pods in case of any downtime. The Container Runtime is used to run the container when it is started. We will use Network File System (NFS) server to store the data stored in the databases as a central repository . Kubernetes clients can then interact with the API server to deploy and manage applications on the cluster. When an application is deployed, Kubernetes schedules the necessary containers onto the available nodes based on resource requirements and availability and also manages their life cycle, scaling them up or down as needed. To access the application, users connect to a load balancer that is deployed on the Kubernetes  as a service. The lservice distributes traffic across the containers running in the Kubernetes cluster.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=10cm, height=6.2cm]{images/Kubernetes_architecture.jpg}
+    \caption{Architecture of Bookstore application on Kubernetes}
+    \label{fig:my_label}
+\end{figure}
+\section{Implementation}
+\subsection{Milestone 1}
+A bookstore application is developed to order books online. The customer is able to view the books, add books to the cart, order them, and view the order history and the status of the order. The administrator can also easily add new books to the application, including important details such as author information, price, and quantity available. To achieve its functionality, the bookstore application is comprised of four key microservices, which are the User Service, Orders Service, front-end Bookstore UI, and the Books Service. All of these microservices work together seamlessly to ensure optimal performance of the application. The data is stored in a centralized database, specifically MySQL, which has been carefully chosen for its reliability and performance. The Bookstore UI is developed using HTML, CSS, and JavaScript, providing a user-friendly and intuitive interface for customers and administrators. Depending on the user's role, the User Service ensures that the appropriate functionality is available to them. This  service has been developed using Java programming language. The Orders Service is responsible for managing the user's cart details, order history, and the delivery status of each order which has been developed using Python programming language and has been seamlessly integrated with the other microservices. The Books Service, developed in Java programming language, is responsible for managing information about the books available in the application.  The application has been developed with great attention to detail, ensuring that every aspect of the process, from browsing books to order fulfillment, is seamless and intuitively developed as polyglot microservices. Once the application was developed, we converted it into Docker images using Dockerfile and then pushed those images to Docker Hub. Next, we set up a single node Docker machine and pulled all the Docker images from Docker Hub onto this machine. Finally, we ran all the containers on this single node Docker machine, allowing us to test our application using Docker.
+
+\subsection{Milestone 2}
+For the deployment of the bookstore application in a large scale, the Kubernetes setup is done on the Google Cloud Platform (GCP). A Virtual Private Cloud (VPC) network is auto-configured in the Google Cloud Platform for the intercommunication of the applications and network discovery. As part of the project, a Kubernetes cluster of three nodes is created with the configuration of 4vCPU and 8GB of RAM. We are implementing the cluster has one master and two slave nodes. The operating system deployed on the machines is Ubuntu 20.04 LTS amd64 focal image built on 2023-03-02. We are using containerd as the container runtime. We have created one more node with the configuration of 4vCPU, 8GB of RAM, and 50GB SSD with Ubuntu 20.04 LTS amd64 focal image built on 2023-03-02 as an operating system. This machine is used as the Network File System - NFS server for centralized storage. In a Kubernetes environment, an NFS server can be used as a persistent storage solution that allows containers to access and manipulate data stored on a networked file system. The Kubernetes cluster is configured to automatically provision and manage persistent volumes (PVs) that are backed by the NFS server, which can be used by applications running in pods. When a pod requests access to the storage, it would create a PersistentVolumeClaim (PVC) that specifies the storage requirements, which Kubernetes would use to dynamically provision a PV that is backed by the NFS server. Once the PV is provisioned, it can be mounted as a volume in the pod's container, allowing the application to read and write data to the shared storage. This provides a scalable and reliable way to store data that can be accessed from multiple pods or nodes in a Kubernetes cluster.
+\subsection{Milestone 3}
+We have created the manifest files required for the deployment of the bookstore application in this milestone. In Kubernetes, deployment and service files are two types of manifest files used to define and manage applications running in a cluster. For each one of the microservices, a deployment file is created as a deployment object in Kubernetes which in turn runs the application container inside a pod. The deployment file typically includes specifications for the container image, the number of replicas to create, and any necessary environment variables, volumes, and networking configuration. When the deployment file is applied to the cluster, Kubernetes will create the specified number of replicas and manage their life cycle, ensuring that the desired number of replicas is always running and up-to-date. This is responsible for scaling each microservice and auto-healing the pods. Service files for all the microservices are created as they are used to define a Kubernetes Service object, which provides a stable IP address and DNS name for accessing a set of pods running in the cluster. The service file typically includes specifications for the type of service, the selector used to target the pods, and any necessary networking configuration. When the service file is applied to the cluster, Kubernetes will create the Service object and ensure that it is available for other objects in the cluster to use for accessing the pods. By default, the Round robin scheduling algorithm is used for diverting the traffic to the pods. The MySQL database is configured as the persistent volume as the data stored in the MySQL database is persisted across pod restarts or node failures, ensuring that the data is always available. It also makes sure to use a centralized storage solution, such as an NFS server or cloud-based storage service, for storing the data. This can help ensure that the data is stored securely and centrally, and can be easily accessed by other pods or services in the Kubernetes cluster. We ensured that all four microservices of the book application were running as pods in the Kubernetes cluster and that they were able to communicate with each other and the database pods. Next, we exposed the application to the internet by creating a service. This allowed users to access the application using any IP of the node in the cluster.After completing these steps, the book application was successfully up and running, and users could access it over the internet using any of the IP of the node in the cluster.
+
+\bibliographystyle{unsrt}
+\bibliography{Compiler}
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  LocalWords:  endnotes includegraphics fread ptr nobj noindent
+%%  LocalWords:  pdflatex acks
