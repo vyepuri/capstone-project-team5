@@ -1,0 +1,214 @@
+
+
+order services
+
+==========================================================================================================================================================================================
+
+[GET]			http://localhost:8082/orders/test
+
+
+Order service is working!!!
+
+
+================================================================================================================================================================================
+
+[POST]			http://localhost:8082/orders/cart/add
+
+{
+	"emailid": "vamsi@kent.edu",
+	"bookid": "b23456794",
+	"quantity": 2,
+	"price": 350
+}
+
+
+
+
+{
+	"message":"success"
+}
+ 200 OK
+
+
+============================================================================================================================================================================================
+
+[POST]			http://localhost:8082/orders/cart/list
+
+{
+	"emailid": "vamsi@kent.edu"
+}
+
+
+
+
+
+[
+	{
+		"bookid":"b23456791",
+		"bookname":"PYTHON",
+		"orderid":"o1588074856",
+		"price":400,
+		"quantity":1
+	},
+	{
+		"bookid":"b23456792",
+		"bookname":"JAVA",
+		"orderid":"o1588074866",
+		"price":450,
+		"quantity":1
+	},
+	{
+		"bookid":"b23456794",
+		"bookname":"BASICS OF MONGODB",
+		"orderid":"o1588145594",
+		"price":700,
+		"quantity":2
+	}
+]
+
+200 OK
+
+
+=================================================================================================================================================================================
+
+[POST]			http://localhost:8082/orders/cart/delete
+
+{
+	"emailid": "vamsi@kent.edu",
+	"orderid": "o1588001487"
+}
+
+
+
+{
+	"message":"success"
+}
+
+200 OK
+
+
+======================================================================================================================================================================================
+
+[POST]			http://localhost:8082/orders/cart/pay
+
+{
+	"emailid": "vamsi@kent.edu", 
+	"paymenttype": "COD",
+	"paymentdate": "26/4/2020 13:12:13",
+	"books" : [
+		    {
+			"bookId": "b23456791",
+			"quantity": "1"
+		    },
+		    {
+			"bookId": "b23456792",
+			"quantity": "1"
+		    },
+		    {
+			"bookId": "b23456794",
+			"quantity": "1"
+		    }	
+		   ]
+}
+
+
+{
+	"message":"success"
+}
+
+200 OK
+
+
+=================================================================================================================================================================================
+
+[POST]			http://localhost:8082/orders/myorders
+
+{
+	"emailid": "vamsi@kent.edu"
+}
+
+
+
+
+
+[
+	{	"bookname":"BASICS OF OOPS",
+		"deliverystatus":"On the way",
+		"paymentdate":"26/4/2020 13:12:13",
+		"paymenttype":"NEFT",
+		"price":300,
+		"quantity":1
+	},
+	{	"bookname":"BASICS OF JAVA",
+		"deliverystatus":"On the way",
+		"paymentdate":"27/4/2020 13:12:13",
+		"paymenttype":"COD",
+		"price":250,
+		"quantity":2
+	}
+]
+
+200 OK
+
+=====================================================================================================================================================================================
+
+[POST]			http://localhost:8082/orders/all		(Admin only)
+
+{
+	"emailid": "admin@kent.edu"
+}
+
+
+
+
+[
+	{
+		"address":"KSU",
+		"bookname":"BASICS OF OOPS",
+		"city":"Kent",
+		"deliverystatus":"On the way",
+		"mobile":"3301234567",
+		"name":"Vamsi",
+		"orderid":"o1587906733",
+		"paymentdate":"26/4/2023 13:12:13",
+		"paymenttype":"NEFT",
+		"pincode":"44240",
+		"quantity":1,
+		"state":"TN"
+	},
+	{
+		"address":"KSU",
+		"bookname":"BASICS OF JAVA",
+		"city":"Kent",
+		"deliverystatus":"On the way",
+		"mobile":"3301234567",
+		"name":"Vamsi",
+		"orderid":"o1587906739"
+		"paymentdate":"27/4/2023 13:12:13",
+		"paymenttype":"COD",
+		"pincode":"44240",
+		"quantity":2,
+		"state":"TN"
+	}
+]
+
+200 OK
+
+
+========================================================================================================================================================================
+
+[POST]			http://localhost:8082/orders/update		(Admin only)
+
+{
+	"emailid": "admin@kent.edu",
+	"orderid": "o1587906733",
+	"deliverystatus": "Delivered"
+}
+
+
+
+{
+	"message":"success"
+}
+
+200 OK

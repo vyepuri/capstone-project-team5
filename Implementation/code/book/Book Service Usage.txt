@@ -1,0 +1,94 @@
+
+
+GET : http://localhost:8081/books/test
+      Hello ! Greetings from book service
+
+
+
+
+POST : http://localhost:8081/books/add
+
+               -------------------------------------
+				Case 1 : Non admin email
+						 { 
+						   "email" : "vamsi@gmail.com",
+						   "bookname" : "Krishna book",
+						   "author" : "Krishna",
+						   "category" : "Science Fiction",
+						   "price" : 250.0,
+						   "availability" : 10
+						}
+		
+
+				Response : 401 Unauthorized
+               -------------------------------------
+				Case 2 : Admin email
+						  { 
+						   "email" : "admin@gmail.com",
+						   "bookname" : "Krishna book",
+						   "author" : "Krishna",
+						   "category" : "Science Fiction",
+						   "price" : 250.0,
+							"availability" : 10
+						}
+				Response : 200 Ok
+						   		 
+               --------------------------------------
+			   
+
+GET : http://localhost:8081/books/list
+
+
+               ------------------------------------------
+               Case 1 : [
+							{
+								"bookid": "b45132ee1-06f6-4e10-9665-f175f706b246",
+								"bookname": "Vamsi book",
+								"author": "Vamsi",
+								"category": "Science Fiction",
+								"price": 250.0,
+								"availability": 10
+							},
+							{
+								"bookid": "b230623b4-3f58-4f0e-9ae5-3bac6299c861",
+								"bookname": "Krishna book",
+								"author": "Krishna",
+								"category": "Science Fiction",
+								"price": 250.0,
+								"availability": 10
+							}
+						]
+              Response : 200 OK
+              -------------------------------------------
+              
+			 
+			 
+			 
+			 
+POST  :  http://localhost:8081/books/updatequantity
+
+             -------------------------------------------------------------------------
+             Case 1 :  Valid BookID
+			 
+                        {
+							"bookId" : "b45132ee1-06f6-4e10-9665-f175f706b246",
+							"quantity": 2
+						}				 
+			 Response : 200 Ok  
+			           
+            -------------------------------------------------------------------------
+             Case 2 : InValid book Id
+          
+		                {
+							"bookId" : "b451cvdfgdfgdfgdfgf
+							"quantity": 2
+						}
+		     Response : 501 NOT IMPLEMENTED	
+            -------------------------------------------------------------------------			 
+			 
+
+
+
+
+
+			

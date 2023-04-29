@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bookstore-ui
+  namespace: bookstore
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 30054
+  selector:
+    app: bookstore-ui
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bookstore-ui
+  namespace: bookstore
+spec:
+  selector:
+    matchLabels:
+      app: bookstore-ui
+  strategy:
+    type: Recreate
+  revisionHistoryLimit: 0  
+  template:
+    metadata:
+      labels:
+        app: bookstore-ui
+    spec:
+      containers:
+      - image: vkyepuri/bookstore-ui:latest
+        name: bookstore-ui
+        volumeMounts:
+        - name: app-json
+          mountPath: /usr/local/apache2/htdocs/properties/          
+        ports:
+        - containerPort: 80
+          name: ui
+      volumes:
+      - name: app-json
+        configMap:
+          name: bookstore-ui-configmap    

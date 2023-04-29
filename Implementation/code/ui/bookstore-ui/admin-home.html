@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>Online Book Store</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+        <link href="css/admin-home.css" rel="stylesheet" type="text/css"/>
+        <script>
+            $(function () {
+                $("#includedContent").load("admin-header.html");
+            });
+            function books(){
+                window.location.href="books.html";
+            }
+            function orders(){
+                window.location.href="orders.html";
+            }
+        </script> 
+    </head>
+    <body>
+        <div id="includedContent"></div>
+        <div class="col-md-12">
+            <div class="col-md-offset-2 col-md-8">
+                <div class="col-md-5" onclick="books()">
+                    <h2>Manage Books</h2>
+                </div>
+                <div class="col-md-offset-2 col-md-5" onclick="orders()">
+                    <h2>View Orders</h2>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>

@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bookstore-ui
+  namespace: bookstore
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 80
+    nodePort: 30054
+  selector:
+    app: bookstore-ui
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bookstore-ui
+  namespace: bookstore
+spec:
+  selector:
+    matchLabels:
+      app: bookstore-ui
+  template:
+    metadata:
+      labels:
+        app: bookstore-ui
+    spec:
+      containers:
+      - image: mypractice96/bs-ui:latest
+        name: bookstore-ui
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "2"
+          limits:
+            memory: "2Gi"
+            cpu: "2" 
+        ports:
+        - containerPort: 80
+          name: book
+ 
+ 
+        

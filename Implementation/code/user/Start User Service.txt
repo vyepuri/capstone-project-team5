@@ -1,0 +1,41 @@
+ Step 1 : Set Env variables         
+
+          -------------SET ENV VARIABLES---------------------
+          
+		export BS_USER_DB_DRIVER=com.mysql.cj.jdbc.Driver
+		export BS_USER_DB_URL=jdbc:mysql://localhost:3306/bookstore
+		export BS_USER_DB_USERNAME=root
+		export BS_USER_DB_PASSWORD=Root_12345
+          
+          --------------------------------------------------
+                            (or)
+          It takes the following as default
+
+          org.h2.Driver
+          jdbc:h2:mem:testdb
+          sa- ""
+
+          If default - goto localhost:8080/h2-console
+          Otherwise go to databse and check
+	  	
+Step 2 : Create tables in mYsql db
+
+          create table users ( email varchar(50) not null, name varchar(50) not null,
+	  password varchar(50) not null, mobile varchar(50) not null, address
+	  varchar(100) not null, city varchar(50) not null, state varchar(50) not null,
+	  pincode varchar(10) not null, role varchar(10) not null, CONSTRAINT email_pk
+	  PRIMARY KEY (email) );
+
+          insert into users values('admin@kent.edu','Admin','admin@123','3301234567','KSU','Kent','OH','44240','ADMIN');         
+          insert into users values('vamsi@kent.edu','Vamsi','vamsi@123','3301234567','KSU','Kent','OH','44240','USER');
+
+
+Step 3 : Start application
+         >> mvn clean install
+         >> mvn spring-boot:run
+
+
+
+
+
+         

@@ -1,0 +1,109 @@
+
+
+
+*********************************************************************************  User Service *******************************************************************
+
+VM  : 2vCPU, 2 GB (ubuntu minimal)
+Pod : 2 cpu, 2GiB (ubunut minimal docker image)
+
+
+Step 1 : Place the jar file in the vm.
+
+Step 2 : Create a service in VM
+--------/etc/systemd/system/myapp.service------
+[Unit]
+Description=My Java Application
+After=syslog.target network.target
+
+[Service]
+User=vamsi
+WorkingDirectory=/home/myuser/myapp
+ExecStart=/usr/bin/java -jar myapp.jar
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target
+---
+
+
+
+Step 3 : Run application boot test
+
+------------- VM application boot test --------------------
+
+# Replace with the name of the VirtualBox VM
+$vmName = "ubuntu-java"
+
+# Replace with the path to the VirtualBox executable (vboxmanage.exe)
+$vboxmanage = "C:\Program Files\Oracle\VirtualBox\vboxmanage.exe"
+
+& $vboxmanage startvm $vmName
+$timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss.fff"
+Write-Host "$timestamp - Virtual machine $vmName started"
+
+
+#Application boottime testing script
+
+$url = "http://192.168.1.147:8080/user/test"   # Replace with the URL you want to hit
+$intervalInMilliseconds = 100      # Replace with the interval in milliseconds between each request
+$maxTimeoutInSeconds = 0.5        # Maximum timeout value in seconds
+
+while($true) {
+    $response = Invoke-WebRequest -Uri $url -TimeoutSec $maxTimeoutInSeconds
+    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss.fff"
+    Write-Host "$timestamp - $($response.StatusCode) - ($response)"    #$($response.StatusDescription)
+    Start-Sleep -Milliseconds $intervalInMilliseconds
+}
+
+
+Step 3 : Run Pod boot test
+
+------------- Pod application boot test --------------------
+
+$url = "http://localhost:30051/user/test"   # Replace with the URL you want to hit
+$intervalInMilliseconds = 100       # Replace with the interval in milliseconds between each request
+$maxTimeoutInSeconds = 0.5        # Maximum timeout value in seconds
+
+while($true) {
+    $response = Invoke-WebRequest -Uri $url -TimeoutSec $maxTimeoutInSeconds
+    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss.fff"
+    Write-Host "$timestamp - $($response.StatusCode) $($response.StatusDescription)"
+    Start-Sleep -Milliseconds $intervalInMilliseconds
+}
+
+
+
+
+
+
+
+
+Ok
+Ok
+Ok
+Ok - Delete the pod
+Error
+Error
+Error
+Error
+Error
+ok - New pod is up and running
+ok
+Ok
+Ok
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

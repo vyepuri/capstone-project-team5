@@ -1,0 +1,7 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+user,com.samples.bookstore.user.config,AppConfig,0,101,0,0,0,12,0,3,0,3
+user,com.samples.bookstore.user.controller,UserController,0,46,0,6,0,13,0,8,0,5
+user,com.samples.bookstore.user.service,UserService,58,3,4,0,12,1,5,1,3,1
+user,com.samples.bookstore.user.dao,UserDao,112,3,2,0,10,1,4,1,3,1
+user,com.samples.bookstore.user,UserApplication,5,3,0,0,2,1,1,1,1,1
+user,com.samples.bookstore.user.bean,User,27,39,0,0,9,19,9,10,9,10

@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bookstore-orders
+  namespace: bookstore
+spec:
+  type: NodePort
+  ports:
+  - port: 8082
+    targetPort: 8082
+    nodePort: 30053
+  selector:
+    app: bookstore-orders
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bookstore-orders
+  namespace: bookstore
+spec:
+  selector:
+    matchLabels:
+      app: bookstore-orders
+  template:
+    metadata:
+      labels:
+        app: bookstore-orders
+    spec:
+      containers:
+      - image: mypractice96/bs-orders:latest
+        name: bookstore-orders
+        resources:
+          requests:
+            memory: "2Gi"
+            cpu: "2"
+          limits:
+            memory: "2Gi"
+            cpu: "2" 
+        ports:
+        - containerPort: 8082
+          name: book
+ 
+ 
+        

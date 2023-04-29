@@ -1,0 +1,6 @@
+com\samples\bookstore\user\config\AppConfig.class
+com\samples\bookstore\user\controller\UserController.class
+com\samples\bookstore\user\dao\UserDao.class
+com\samples\bookstore\user\UserApplication.class
+com\samples\bookstore\user\bean\User.class
+com\samples\bookstore\user\service\UserService.class

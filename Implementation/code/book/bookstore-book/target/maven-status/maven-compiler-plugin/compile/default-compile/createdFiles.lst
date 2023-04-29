@@ -1,0 +1,7 @@
+com\samples\bookstore\book\BookApplication.class
+com\samples\bookstore\book\config\AppConfig.class
+com\samples\bookstore\book\dao\BookDAOImpl.class
+com\samples\bookstore\book\controller\BookController.class
+com\samples\bookstore\book\bean\Book.class
+com\samples\bookstore\book\service\BookService.class
+com\samples\bookstore\book\dao\BookDAO.class

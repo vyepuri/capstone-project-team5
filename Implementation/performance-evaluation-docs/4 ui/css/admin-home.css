@@ -1,0 +1,14 @@
+h2{
+    text-align: center;
+}
+.col-md-5{
+    background-color: orange;
+    padding-top: 40px;
+    border-radius: 13px;
+    padding-bottom: 49px;
+    cursor: pointer;
+}
+.col-md-12{
+    margin-top: 14%;
+}
+

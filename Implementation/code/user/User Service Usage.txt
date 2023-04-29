@@ -1,0 +1,108 @@
+Default Credentials - admin@kent.edu - admin@123        
+                      vamsi@kent.edu - vamsi@123
+
+
+
+GET : http://localhost:8080/user/test
+      Hello! It's working
+
+
+
+
+POST : http://localhost:8080/user/login
+
+               -------------------------------------
+				Case 1 : Wrong Username/Password
+						 {
+						   "email": "vamsi@kent.edu",
+						   "password": "vamsi@123"
+						 }
+
+				Response : 404 Not Found
+               -------------------------------------
+				Case 2 : Correct Username/password
+						  {
+						   "email": "vamsi@kent.edu",
+						   "password": "vamsi@123"
+						 }
+				Response : 200 Ok
+						   {
+							"email": "vamsi@kent.edu",
+							"name": "Vamsi",
+							"role": "USER"
+						   }		 
+               --------------------------------------
+			    Case 3 : Admin Login
+			             {
+						   "email": "admin@kent.edu",
+						   "password": "admin@123"
+						 }
+			    Response : 200 Ok           
+			             {
+							"email": "admin@kent.edu",
+							"name": "Admin",
+							"role": "ADMIN"
+						 }
+			   -------------------------------------
+
+POST : http://localhost:8080/user/add
+
+
+               ------------------------------------------
+               Case 1 : User Sign Up
+						{
+							"email": "vamsi@kent.edu",
+							"name": "Vamsi",
+							"password": "vamsi@123",
+							"mobile": "3301234567",
+							"address": "KSU",
+							"city": "Kent",
+							"state": "OH",
+							"pincode": "44240"
+						}	
+              Response : 200 OK
+              -------------------------------------------
+              Case 2 : UserId already exists
+               			{
+							"email": "vamsi@kent.edu",
+							"name": "Vamsi",
+							"password": "vamsi@123",
+							"mobile": "3301234567",
+							"address": "KSU",
+							"city": "Kent",
+							"state": "OH",
+							"pincode": "44240"
+						}	
+             Response : 409 Conflict	
+             -------------------------------------------
+			 
+			 
+			 
+			 
+GET  :  http://localhost:8080/user/role/{email}
+
+             -------------------------------------------------------------------------
+             Case 1 :  Existing emial Id
+			 
+                        http://localhost:8080/user/role/vamsi@kent.edu				 
+			 Response : 200 Ok  
+			            USER
+            -------------------------------------------------------------------------
+             Case 2 : Non existing email Id
+          
+		               http://localhost:8080/user/role/abc@kent.edu
+		     Response : 404 Not Found	
+            -------------------------------------------------------------------------			 
+			 Case 3 : Admin email Id 
+			  
+			          http://localhost:8080/user/role/admin@kent.edu
+			 Response : 200 Ok      
+                        ADMIN	
+            ------------------------------------------------------------------------		
+
+
+
+
+
+
+			

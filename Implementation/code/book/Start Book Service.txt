@@ -1,0 +1,47 @@
+ Step 1 : Set Env variables         
+
+          -------------SET ENV VARIABLES---------------------
+  
+
+			export BS_BOOK_DB_DRIVER=com.mysql.cj.jdbc.Driver
+			export BS_BOOK_DB_URL=jdbc:mysql://localhost:3306/bookstore
+			export BS_BOOK_DB_USERNAME=root
+			export BS_BOOK_DB_PASSWORD=Root_12345
+				   
+			export USER_SVC_ROLE_URL=http://35.238.174.154:8080/user/role
+
+
+          --------------------------------------------------
+                            (or)
+          It takes the following as default
+
+          org.h2.Driver
+          jdbc:h2:mem:testdb
+          sa- ""
+
+          If default - goto localhost:8081/h2-console
+          Otherwise go to databse and check
+	  	
+Step 2 : Create tables in mYsql db
+
+          create table books( bookid varchar(50) PRIMARY KEY,
+                             bookname varchar(50) NOT NULL,
+                             author varchar(50) NOT NULL,
+                             category varchar(50) NOT NULL,
+                             availability int(10) NOT NULL,
+                             price double(10) NOT NULL
+                             
+          );
+
+
+
+Step 3 : Start application
+         >> mvn clean install
+         >> mvn spring-boot:run
+
+
+
+
+
+
+         

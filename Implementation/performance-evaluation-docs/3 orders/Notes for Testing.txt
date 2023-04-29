@@ -1,0 +1,74 @@
+
+************************************************************************************** Orders Service **********************************************************************************
+
+VM  : 2vCPU, 2 GB (ubuntu minimal)
+Pod : 2 cpu, 2GiB (ubunut minimal docker image)
+
+
+Step 1 : Create a service in VM
+--------/etc/systemd/system/myapp.service------
+[Unit]
+Description=My Python Application
+After=syslog.target network.target
+
+[Service]
+User=vamsi
+WorkingDirectory=/home/vamsi/orders
+ExecStart=/usr/bin/python3 main.py
+SuccessExitStatus=143
+
+[Install]
+WantedBy=multi-user.target
+
+---------------------
+
+
+
+
+------------- VM application boot test --------------------
+
+
+# Replace with the name of the VirtualBox VM
+$vmName = "ubuntu-python"
+
+# Replace with the path to the VirtualBox executable (vboxmanage.exe)
+$vboxmanage = "C:\Program Files\Oracle\VirtualBox\vboxmanage.exe"
+
+& $vboxmanage startvm $vmName
+$timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss.fff"
+Write-Host "$timestamp - Virtual machine $vmName started"
+
+
+#Application boottime testing script
+
+$url = "http://192.168.1.158:8082/orders/test"   # Replace with the URL you want to hit
+$intervalInMilliseconds = 100      # Replace with the interval in milliseconds between each request
+$maxTimeoutInSeconds = 0.5        # Maximum timeout value in seconds
+
+while($true) {
+    $response = Invoke-WebRequest -Uri $url -TimeoutSec $maxTimeoutInSeconds
+    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss.fff"
+    Write-Host "$timestamp - $($response.StatusCode) - ($response)"    #$($response.StatusDescription)
+    Start-Sleep -Milliseconds $intervalInMilliseconds
+}
+
+
+
+
+------------- Pod application boot test -----------------
+
+$url = "http://localhost:30053/orders/test"   # Replace with the URL you want to hit
+$intervalInMilliseconds = 100       # Replace with the interval in milliseconds between each request
+
+while($true) {
+    $response = Invoke-WebRequest -Uri $url
+    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss.fff"
+    Write-Host "$timestamp - $($response.StatusCode) $($response.StatusDescription)"
+    Start-Sleep -Milliseconds $intervalInMilliseconds
+}
+
+
+
+
+
+

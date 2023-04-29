@@ -1,0 +1,9 @@
+{
+    
+  "orders_host": "localhost:8082",
+
+  "user_host": "localhost:8080",
+
+  "books_host": "localhost:8081"
+
+}

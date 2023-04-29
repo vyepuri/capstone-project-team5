@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-default collapse navbar-collapse" style="background-color: black;border:0;border-radius:0;">
+            <div class="container-fluid" style="padding: 0px">
+                <div class="pull-left" id="mainlogo">
+                    <a href="admin-home.html"><h3 style="color:white;">Online Book Store</h3></a>
+                </div>
+                <ul class="nav navbar-nav pull-right mr-auto">
+                    <li>
+                        <a class="nav-link dropdown-toggle f_col" id="pro" style="color:white">
+                            <span class="glyphicon glyphicon-user" id="profile1">Profile</span> 
+                        </a>                        
+                    </li>
+                    <li><a id="logout" class="f_col" style="color:white" href="index.html">Logout <span class="glyphicon glyphicon-log-out"></span></a></li>                   
+                </ul>
+            </div>
+        </nav>
+    </body>
+    <script>
+        $(document).ready(function(){
+            $("#profile1").text(sessionStorage.getItem("name"));
+        });
+    </script>
+</html>

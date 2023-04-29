@@ -1,0 +1,216 @@
+
+
+====================== Preparing MySql Container and loading data   ===============================
+
+
+Step 1 : Create Docker Network for Bookstore
+  
+         >> docker network create bookstore-nw
+		 
+Step 2 : Create Docker Volume for Bookstore-MySQL		
+ 
+         >> docker volume create bookstore-mysql-volume
+
+Step 3 : Run MySQL Container within bookstore network and attach volume
+		 
+         >> docker run --name bookstore-mysqldb --network bookstore-nw -v bookstore-mysql-volume:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=Root_12345  -d mysql:8.0.32
+
+Step 4 : Load data.sql  into the mysql container  
+
+        --------------------------------------------------data.sql--------------------------------------------------------------
+           Check data.sql file
+        -----------------------------------------------------------------------------------------------------------------------
+
+
+        >>  docker exec -i bookstore-mysqldb  mysql -uroot -pRoot_12345 mysql < data.sql
+
+
+
+
+
+
+
+
+======================= JAVA USER SERVICE  ==============================
+
+Note : If you don't have code. Jump to Step 5
+ 
+Step 1 :  Clone repo and build jar file.
+          
+		 >>  git clone https://github.com/vyepuri/capstone-project-team5-impl.git
+             >>  cd code/user/bookstore-user
+		  
+		 >>  Set environment variables
+		    
+			   ----------------------------------------------------------------
+			      export BS_USER_DB_DRIVER=com.mysql.cj.jdbc.Driver
+				export BS_USER_DB_URL=jdbc:mysql://localhost:3306/bookstore
+				export BS_USER_DB_USERNAME=root
+				export BS_USER_DB_PASSWORD=Root_12345
+			   ----------------------------------------------------------------	
+		 
+		 >>  mvn clean install	  (Maven 3.6.3, Java 1.8.0_361)	 
+
+
+Step 2 : Create DockerFile after building user service (already exists in git repo)
+
+          ----------------------Dockerfile-------------------------
+		      From openjdk:8
+			copy ./user-0.0.1-SNAPSHOT.jar user.jar
+			CMD ["java","-jar","user.jar"]
+		  ---------------------------------------------------------			  
+		 
+		  
+Step 3 : Build docker image using docker build and Dockerfile
+
+          >> docker build -t user:latest .
+		  
+Step 4 : Push the docker image to docker hub/dtr (Optional)
+   
+              >> docker tag user:latest vkyepuri/bookstore-user:latest 
+		  >> docker login 
+		  >> docker push vkyepuri/bookstore-user:latest
+		  
+        
+		   
+Step 5 :  Run the container from docker hub
+
+          >> docker run --name bookstore-user-service -p 8080:8080 --network bookstore-nw -e BS_USER_DB_DRIVER=com.mysql.cj.jdbc.Driver -e BS_USER_DB_URL=jdbc:mysql://bookstore-mysqldb:3306/bookstore -e BS_USER_DB_USERNAME=root -e BS_USER_DB_PASSWORD=Root_12345 -d vkyepuri/bookstore-user:latest
+
+Step 6 :  Test the service (On browser or POSTMAN)
+
+          GET : http://<ip>:8080/user/test
+          GET : http://<ip>:8080/user/role/admin@kent.edu		  
+
+
+
+
+        
+
+===================== JAVA BOOKS SERVICE  ==============================
+
+Note : If you don't have code. Jump to Step 5
+
+Step 1 :  Clone repo and build jar file
+          
+		  >>  git clone https://github.com/vyepuri/capstone-project-team5-impl.git
+              >>  cd code/book/bookstore-book
+		 
+		 >>  Set environment variables
+		    
+			   ----------------------------------------------------------------
+				export BS_BOOK_DB_DRIVER=com.mysql.cj.jdbc.Driver
+				export BS_BOOK_DB_URL=jdbc:mysql://localhost:3306/bookstore
+				export BS_BOOK_DB_USERNAME=root
+				export BS_BOOK_DB_PASSWORD=Root_12345
+					   
+				export USER_SVC_ROLE_URL=http://localhost:8080/user/role
+			   ----------------------------------------------------------------	
+		 
+		 >>  mvn clean install
+		 
+
+Step 2 : Create DockerFile after building user service
+
+          ----------------------Dockerfile-------------------------
+		      From openjdk:8
+			copy ./book-0.0.1-SNAPSHOT.jar book.jar
+			CMD ["java","-jar","book.jar"]
+		  ---------------------------------------------------------	
+		  
+Step 3 : Build docker image using docker build and Dockerfile
+
+          >> docker build -t book:latest .
+		  
+Step 4 : Push the docker image to docker hub/dtr (Optional)
+   
+          >> docker tag book:latest vkyepuri/bookstore-book:latest 
+		  >> docker login 
+		  >> docker push vkyepuri/bookstore-book:latest		  
+
+Step 5 : Run as container with db configurations as environment variables		  
+			
+	      >> docker run --name bookstore-book-service -p 8081:8081 --network bookstore-nw -e BS_BOOK_DB_DRIVER=com.mysql.cj.jdbc.Driver -e BS_BOOK_DB_URL=jdbc:mysql://bookstore-mysqldb:3306/bookstore -e BS_BOOK_DB_USERNAME=root -e BS_BOOK_DB_PASSWORD=Root_12345 -e USER_SVC_ROLE_URL=http://bookstore-user-service:8080/user/role -d vkyepuri/bookstore-book:latest		
+            
+
+Step 6 :  Test the service (On browser or POSTMAN)
+
+          GET : http://<ip>:8081/books/test
+          GET : http://<ip>:8081/books/list/
+		  
+		  
+
+
+===================== PYTHON ORDERS SERVICE  ===========================
+
+
+Note : If you don't have code. Jump to Step 5
+
+Step 1 : Clone repository
+       
+	      >>  git clone https://github.com/vyepuri/capstone-project-team5-impl.git
+            >>  cd code/orders/bookstore-orders
+         
+Step 2 : Create Dockerfile with all code
+
+           ----------------------------------------------------
+			FROM ubuntu:18.04
+			RUN apt-get update -y && \
+				apt-get install -y python3 python3-dev python-pip3
+			COPY . /app/
+			RUN pip install -r /app/requirements.txt
+			ENTRYPOINT ["python3"]
+			CMD ["/app/main.py"]
+		  -----------------------------------------------------	
+		  
+		      File structure looks like this
+		     ------
+			    |__ Dockerfile
+				|__ main.py 
+                        |__ requirements.txt				
+				|__ yourfile1.py 
+				|__ yourfile2.py
+				
+Step 3 : Build docker image using docker build and Dockerfile
+
+          >> docker build -t order:latest .		
+
+
+Step 4 : Push the docker image to docker hub/dtr (Optional)
+   
+              >> docker tag order:latest vkyepuri/bookstore-orders:latest 
+		  >> docker login 
+		  >> docker push vkyepuri/bookstore-orders:latest		  
+
+Step 5 : Run as container with db configurations as environment variables		  
+			
+	      >> docker run --name bookstore-order-service -p 8082:8082 --network bookstore-nw -e BS_ORDER_DBHOST=bookstore-mysqldb -e BS_ORDER_DBNAME=bookstore -e BS_ORDER_DB_USERNAME=root -e BS_ORDER_DB_PASSWORD=Root_12345 -e USER_SVC_ROLE_URL=http://bookstore-user-service:8080/user/role -e BOOK_QUANTITY_UPDATE_URL=http://bookstore-book-service:8081/books/updatequantity -d vkyepuri/bookstore-orders:latest		
+         			 
+
+Step 6 :  Test the service (On browser or POSTMAN)
+
+          GET  : http://<ip>:8082/orders/test
+          POST : http://<ip>:8082/orders/cart/list	  
+				 {
+				   "emailid": "vamsi@kent.edu"
+				 }
+
+
+
+
+
+================= BOOKSTORE ANGULAR UI  ==================
+
+Note : If you don't have code. Jump to Step 3
+
+
+Step 1 : >>  git clone https://github.com/vyepuri/capstone-project-team5-impl.git
+         >>  cd code/ui/bookstore-ui
+
+Step 2 : docker build -t vkyepuri/bookstore-ui:latest .
+
+Step 3 : Run as container 		  
+			
+	   >> docker run --name bookstore-ui-service -p 8083:80 -d vkyepuri/bookstore-ui:latest	
+
+

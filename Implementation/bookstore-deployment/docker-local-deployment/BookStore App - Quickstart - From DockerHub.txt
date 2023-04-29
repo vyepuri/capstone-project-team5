@@ -1,0 +1,100 @@
+
+
+====================== Preparing MySql Container and loading data   ===============================
+
+
+Step 1 : Create Docker Network for Bookstore
+  
+         >> docker network create bookstore-nw
+		 
+Step 2 : Create Docker Volume for Bookstore-MySQL		
+ 
+         >> docker volume create bookstore-mysql-volume
+
+Step 3 : Run MySQL Container within bookstore network and attach volume
+		 
+         >> docker run --name bookstore-mysqldb --network bookstore-nw -v bookstore-mysql-volume:/var/lib/mysql -e MYSQL_ROOT_PASSWORD=Root_12345  -d mysql:8.0.32
+
+Step 4 : Load data.sql  into the mysql container  
+
+        --------------------------------------------------data.sql--------------------------------------------------------------
+           Check data.sql file
+        -----------------------------------------------------------------------------------------------------------------------
+
+
+        >>  docker exec -i bookstore-mysqldb  mysql -uroot -pRoot_12345 mysql < data.sql
+
+
+
+
+
+
+
+
+======================= JAVA USER SERVICE  ==============================
+
+		   
+Step 1 :  Run the container from docker hub
+
+          >> docker run --name bookstore-user-service -p 8080:8080 --network bookstore-nw -e BS_USER_DB_DRIVER=com.mysql.cj.jdbc.Driver -e BS_USER_DB_URL=jdbc:mysql://bookstore-mysqldb:3306/bookstore -e BS_USER_DB_USERNAME=root -e BS_USER_DB_PASSWORD=Root_12345 -d vkyepuri/bookstore-user:latest
+
+Step 2 :  Test the service (On browser or POSTMAN)
+
+          GET : http://<ip>:8080/user/test
+          GET : http://<ip>:8080/user/role/admin@kent.edu		  
+
+
+
+
+        
+
+===================== JAVA BOOKS SERVICE  ==============================
+ 
+
+Step 1 : Run as container with db configurations as environment variables		  
+			
+	      >> docker run --name bookstore-book-service -p 8081:8081 --network bookstore-nw -e BS_BOOK_DB_DRIVER=com.mysql.cj.jdbc.Driver -e BS_BOOK_DB_URL=jdbc:mysql://bookstore-mysqldb:3306/bookstore -e BS_BOOK_DB_USERNAME=root -e BS_BOOK_DB_PASSWORD=Root_12345 -e USER_SVC_ROLE_URL=http://bookstore-user-service:8080/user/role -d vkyepuri/bookstore-book:latest		
+            
+
+Step 2 :  Test the service (On browser or POSTMAN)
+
+          GET : http://<ip>:8081/books/test
+          GET : http://<ip>:8081/books/list/
+		  
+		  
+
+
+===================== PYTHON ORDERS SERVICE  ===========================
+
+
+Step 1 : Run as container with db configurations as environment variables		  
+			
+	      >> docker run --name bookstore-order-service -p 8082:8082 --network bookstore-nw -e BS_ORDER_DBHOST=bookstore-mysqldb -e BS_ORDER_DBNAME=bookstore -e BS_ORDER_DB_USERNAME=root -e BS_ORDER_DB_PASSWORD=Root_12345 -e USER_SVC_ROLE_URL=http://bookstore-user-service:8080/user/role -e BOOK_QUANTITY_UPDATE_URL=http://bookstore-book-service:8081/books/updatequantity -d vkyepuri/bookstore-orders:latest		
+         			 
+
+Step 2 :  Test the service (On browser or POSTMAN)
+
+          GET  : http://<ip>:8082/orders/test
+          POST : http://<ip>:8082/orders/cart/list	  
+				 {
+				   "emailid": "vamsi@kent.edu"
+				 }
+
+
+
+
+
+================= BOOKSTORE JS UI  ==================
+
+
+Step 1 : Run as container 		  
+			
+	      >> docker run --name bookstore-ui-service -p 8083:80 -d vkyepuri/bookstore-ui:latest	
+
+Step 2 :  Login in browser
+
+          http://<ip>:8083
+                  vamsi@kent.edu/vamsi@123
+                  admin@kent.edu/admin@123
+                      
+
