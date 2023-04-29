@@ -120,7 +120,7 @@ Docker and Kubernetes
 }
 
 \author{Vamsi Krishna Yepuri,  Venkata Kalyan Polamarasetty, Shivani Donthi, Ajay Kumar Reddy Gondi \\
-Kent State University}
+Department of Computer Science, Kent State University}
         % <-this % stops a space
 % \thanks{This paper was produced by the IEEE Publication Technology Group. They are in Piscataway, NJ.}% <-this % stops a space
 % \thanks{Manuscript received April 19, 2021; revised August 16, 2021.}}
@@ -223,7 +223,7 @@ Monolithic and microservice architectures are two different approaches to design
 \cite{escobar2016towards}explains the process of transforming monolithic applications into microservices and provides a framework for understanding the migration process. It discusses the benefits and challenges of adopting a microservices architecture.
 
 \subsection{ Polyglot microservices}
-Polyglot Microservices refer to a software architecture that involves using multiple programming languages and technologies to build independent, small-sized services that work together to accomplish a larger goal. \emph{Fig.2 : Polyglot microservices} represents polyglot microservices. This approach allows developers to choose the best language and tools for each service, rather than being limited to a single technology stack. Polyglot microservices are becoming increasingly popular because they offer several benefits, such as increased flexibility, improved scalability, and better fault tolerance. They can be designed to communicate with each other through APIs, message queues, or other protocols, which enables them to work together as a cohesive system.
+Polyglot microservices refer to a software architecture that involves using multiple programming languages and technologies to build independent, small-sized services that work together to accomplish a larger goal. \emph{Fig.2 : Polyglot microservices} represents polyglot microservices. This approach allows developers to choose the best language and tools for each service, rather than being limited to a single technology stack. Polyglot microservices are becoming increasingly popular because they offer several benefits, such as increased flexibility, improved scalability, and better fault tolerance. They can be designed to communicate with each other through APIs, message queues, or other protocols, which enables them to work together as a cohesive system.
 While there are challenges to building and managing polyglot microservices, such as the need to manage multiple programming languages and tools, these can be overcome with the right approach and tools. As a result, many organizations are adopting this approach to build more resilient and adaptable software systems.
 
 \begin{figure}
@@ -235,7 +235,7 @@ While there are challenges to building and managing polyglot microservices, such
 The methods for achieving consistent distributed transactions across polyglot microservices that use several databases were covered in  ~\cite{zhang2019grit}, which also addressed the challenges of distributed transactions in a polyglot environment.
 
 \subsection{ Container}
-A container is a lightweight, standalone, and executable package of software that includes everything needed to run an application, such as code, libraries, and system tools. Containers provide a consistent runtime environment, ensuring that the application can run reliably regardless of the underlying system's configuration. \emph{Fig. 3: Virtual Machine vs Container} shows the difference between a virtual machine and a container.
+A container is a lightweight, standalone, and executable package of software that includes everything needed to run an application, such as code, libraries, and system tools. Containers provide a consistent run time environment, ensuring that the application can run reliably regardless of the underlying system's configuration. \emph{Fig. 3: Virtual Machine vs Container} shows the difference between a virtual machine and a container.
 ~\cite{siddiq2014comprehen} is a comprehensive report on the use of container technology in modern software development. It covers various aspects of container technology, including its history, benefits, challenges, and future trends. The goal of containerization is to package each service and its dependencies into a lightweight, portable container that can run on any machine or cloud environment. 
 
 \begin{figure}
@@ -290,7 +290,7 @@ To carry out a test of Docker and Kubernetes with an application in our scenario
 \end{figure}
 Let us suppose that the bookstore application is deployed on a single-node Docker system as shown in Fig.6. Docker containers are lightweight and standalone virtual machines that can run on any computer. The Docker engine effectively manages these containers and ensures that they have access to the necessary resources, such as memory and CPU, while keeping them isolated from each other. By running multiple containers on the same machine, each with its own set of dependencies and configurations, applications can be easily deployed and managed without having to worry about conflicts between different software components. All the services with the source code and Dockerfile are built using the Docker container platform. Once the build is completed, the data is pushed to the central repository of the Docker hub.  This eliminates the need to download and configure software dependencies for each microservice individually, making deployment more efficient and less time-consuming. With the required software already pre-packaged into the images, it's simply a matter of pulling the necessary images and running them in the Docker container. To run the bookstore application, all the microservices required images that are saved on Docker Hub are set to run by using the docker run command. The containers are created once the docker run with the image name saved in the Docker hub command is given. The main reason of moving from the single-node Docker system to Kubernetes is that it can provide several benefits such as scalability, high availability, resource efficiency, service discovery for more complex applications with higher demands from the user. By distributing the workload across multiple nodes, Kubernetes can handle much larger workloads than a single-node Docker system, making it an ideal choice for applications with rapidly increasing traffic. The automatic detection and recovery features of Kubernetes can help maintain application availability, reduce downtime, and minimize the need for manual intervention.
 
-The bookstore application can be deployed on Kubernetes. For the multiple nodes, we are using the Google Cloud platform - GCP as shown in Fig.7. The system starts with the creation of a VPC network, which is a virtual private network for Google Cloud resources. This network provides a private network space for the deployment of Kubernetes clusters. A Kubernetes cluster is then deployed on the VPC network with 1 master node and 2 slave nodes. This cluster consists of one or more nodes, where each node is a virtual machines (VMs). Each virtual machine runs a Kubernetes node, which is responsible for running pods and managing the resources of the virtual machine. Utilizing compute engine in GCP, a kubernetes master node is  deployed, which manages the Kubernetes API server, controller, scheduler, and the etcd database. The API server is responsible for receiving and processing requests from its clients, while etcd stores configuration data and metadata for the Kubernetes cluster. The controller sends the commands to the slave nodes.  For example, if the image is to be deployed in the slave node, the controller sends a command to the kubelet in the slave node to implement the process. The scheduler is used while the initial creation of the pods in the slave nodes to configure the placement of the pods in case of any downtime. The Container Runtime is used to run the container when it is started. We will use Network File System (NFS) server to store the data stored in the databases as a central repository . Kubernetes clients can then interact with the API server to deploy and manage applications on the cluster. When an application is deployed, Kubernetes schedules the necessary containers onto the available nodes based on resource requirements and availability and also manages their life cycle, scaling them up or down as needed. To access the application, users connect to a load balancer that is deployed on the Kubernetes  as a service. The lservice distributes traffic across the containers running in the Kubernetes cluster.
+The bookstore application can be deployed on Kubernetes. For the multiple nodes, we are using the Google Cloud platform - GCP as shown in Fig.7. The system starts with the creation of a VPC network, which is a virtual private network for Google Cloud resources. This network provides a private network space for the deployment of Kubernetes clusters. A Kubernetes cluster is then deployed on the VPC network with 1 master node and 2 slave nodes. This cluster consists of one or more nodes, where each node is a virtual machines (VMs). Each virtual machine runs a Kubernetes node, which is responsible for running pods and managing the resources of the virtual machine. Utilizing compute engine in GCP, a kubernetes master node is  deployed, which manages the Kubernetes API server, controller, scheduler, and the etcd database. The API server is responsible for receiving and processing requests from its clients, while etcd stores configuration data and metadata for the Kubernetes cluster. The controller sends the commands to the slave nodes.  For example, if the image is to be deployed in the slave node, the controller sends a command to the kubelet in the slave node to implement the process. The scheduler is used while the initial creation of the pods in the slave nodes to configure the placement of the pods in case of any downtime. The container run time is used to run the container when it is started. We will use Network File System (NFS) server to store the data stored in the databases as a central repository . Kubernetes clients can then interact with the API server to deploy and manage applications on the cluster. When an application is deployed, Kubernetes schedules the necessary containers onto the available nodes based on resource requirements and availability and also manages their life cycle, scaling them up or down as needed. To access the application, users connect to a load balancer that is deployed on the Kubernetes  as a service. The service distributes traffic across the containers running in the Kubernetes cluster.
 
 \begin{figure}
     \centering
@@ -299,7 +299,9 @@ The bookstore application can be deployed on Kubernetes. For the multiple nodes,
     \label{fig:my_label}
 \end{figure}
 \section{Implementation}
-To implement the containerization of polyglot microservice application , firstly we need to delvelop the microservices required for the application and then deploy the images of the microservices to the cloud system wher kubernetes is configured. 
+This project is implemented as the following four steps. To implement the containerization of polyglot microservice application , firstly we need to develop the microservices required for the application and then deploy the images of the microservices to the cloud system where kubernetes is configured. After deploying the microservices, we will compare the performance of the application on a virtual machine and a container. 
+
+
 \subsection{Development of polyglot microservices and containerizing then with Docker}
 A bookstore application is developed to order books online. The customer is able to view the books, add books to the cart, order them, and view the order history and the status of the order. The administrator can also easily add new books to the application, including important details such as author information, price, and quantity available. To achieve its functionality, the bookstore application is comprised of four key microservices, which are the User Service, Orders Service, front-end Bookstore UI, and the Books Service. All of these microservices work together seamlessly to ensure optimal performance of the application. The data is stored in a centralized database, specifically MySQL, which has been carefully chosen for its reliability and performance. The Bookstore UI is developed using HTML, CSS, and JavaScript, providing a user-friendly and intuitive interface for customers and administrators. Depending on the user's role, the User Service ensures that the appropriate functionality is available to them. This  service has been developed using Java programming language. The Orders Service is responsible for managing the user's cart details, order history, and the delivery status of each order which has been developed using Python programming language and has been seamlessly integrated with the other microservices. The Books Service, developed in Java programming language, is responsible for managing information about the books available in the application.  The application has been developed with great attention to detail, ensuring that every aspect of the process, from browsing books to order fulfillment, is seamless and intuitively developed as polyglot microservices. Once the application was developed, we converted it into Docker images using Dockerfile and then pushed those images to Docker Hub. Next, we set up a single node Docker machine and pulled all the Docker images from Docker Hub onto this machine. Finally, we ran all the containers on this single node Docker machine, allowing us to test our application using Docker.
 
@@ -317,162 +319,107 @@ Performance evaluation for containers versus VMs is an important step in determi
 
 3. Performance metrics
 
-For the evalution of performance of Containerized Services and Services running on VM , both the systems given same environment and allocated equal resources of 2 core CPU with 2GB RAM to achive the best possible results.
+For the evaluation of performance of containerized services and services running on VM , both the systems are tested in the same environment and allocated equal resources of 2 core CPU with 2GB RAM to achieve the best possible results.
 
 
-\subsubsection{Boot Time }
-Boot Time refers to the amount of time it takes for a server or system to start up and become fully operational. It's an important parameter to consider, especially in situations where high availability and uptime are critical, as longer boot times can result in longer downtimes and potentially impact user experience. Factors that can impact boot time include the hardware configuration, software stack, and network connectivity.
+\subsubsection{Boot Time}
+Boot Time refers to the amount of time it takes for a server or system to start up and become fully operational. It's an important parameter to consider, especially in situations where high availability and recover time are critical, as longer boot times can result in longer down times and potentially impact user experience. Factors that can impact boot time include the hardware configuration, software stack, and network connectivity. In our scenario, applications are created as services inside VM and container, which means the application will be started after the system boots. Here we considering the boot times of both VM and a container.
 
-a. Boot Time of application running on VM :  The difference between the VM power-on timestamp and the application service start timestamp.
+a. Boot time of application running on a VM :  To calculate the boot time of the server and application to come up, the timestamp difference between the VM powered-on  and the application serving timestamp is calculated.
 
-b. Boot Time of application running on Container : The difference between the  timestamp at which an existing pod is killed and the next pod serving timestamp.
-
-\begin{figure}[!h]
-    \centering
-    \includegraphics[width=10cm, height=6.2cm]{images/BootComp.png}
-    \caption{VM vs Container - Boot Time Comparision}
-\end{figure}
-
- \emph{Fig. 8: VM vs Container - Boot Time Comparision} shows the comparison of boot time on VM and container and it is clearly evident that the boot time has been greatly improved using the containerised services.
-
-\subsubsection{Server Footprint }
-Server footprint refers the amount of physical space a server takes up, as well as the amount of resources it consumes (such as power, cooling, and storage). A smaller server footprint can be desirable in situations where space is limited or where energy efficiency is a priority. Factors that can impact server footprint include the form factor of the server (such as rack-mounted vs. blade), the hardware configuration, and the efficiency of the power and cooling infrastructure.
+b. Boot time of application running on a container : To calculate the boot time of the application running on a container,the timestamp difference between the  time at which existing pod is killed and the next pod serving is calculated.
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=10cm, height=6.2cm]{images/footcomp.png}
-    \caption{VM vs Container - Server foot Print Comparision}
+    \includegraphics[width=9.3cm, height=4.8cm]{images/BootComp.png}
+    \caption{VM vs Container - Boot Time Comparison}
 \end{figure}
 
-\emph{Fig: 9 VM vs Container - Server foot Print Comparision} depicts the tremondous decrease in the server footprint with the containers compared to that of VM's.
+ \emph{Fig. 8: VM vs Container - Boot Time Comparison} shows the comparison of boot time on VM and container and it is clearly evident that the boot time has been greatly improved using the containerized services.
+
+\subsubsection{Server Footprint}
+Server footprint refers the amount of physical space a server takes up. A smaller server footprint can be desirable in situations where space is limited. 
+
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=9.3cm, height=4.8cm]{images/footcomp.png}
+    \caption{VM vs Container - Server foot Print Comparison}
+\end{figure}
+
+\emph{Fig: 9 VM vs Container - Server foot Print Comparison} depicts the tremendous decrease in the server footprint with the containers compared to that of VM's.
 
 
 \subsubsection{Performance Metrics}
-Performance Metrics refers to various metrics that are used to measure the performance of a server or system, such as cpu utilization, memory usage  and response time. These metrics are important to consider in order to ensure that the system is meeting the needs of its users and is performing optimally. Factors that can impact performance metrics include the hardware configuration, software stack, network connectivity, and workload characteristics.
+Performance Metrics refers to various metrics that are used to measure the performance of a server or system, such as cpu utilization, memory usage  and response time. These metrics are important to consider in order to ensure that the system is meeting the needs of its users and is performing optimally. Factors that can impact performance metrics include the hardware configuration, software stack, network connectivity, and workload characteristics. We have tested performance metrics for both VM and containers. We observed the performance metrics under two states. One is idle state, when servers are not handling any traffic. Another state is load state, where we simulate the load on the application. In this two different states, we observed the performance metrics for both the containers and VMs.
 
-Using JMeter , the load is simulated to test the systems like the real environment and the monitoring and visualization is carried out using Prometheus and Grafana .
+In load state, i.e to simulate the load on the application, we used JMeter tool where we simulate a load of 1000 requests in 1 second ramp up period with 10 iterations. So totally 10000 requests will be imposed on the application.  The observation of the VMs and containers during idle state and load state is carried out using Prometheus monitoring tool. To visualize these metrics, Grafana is used on top of prometheus to create dashboards for observing the performance. Each vm and container were allocated with the limits of 2 core CPU and 2 GB memory.  In the following, we compare the performance metrics for our polyglot microservices in different states (idle and load) in both VM and containers.
 
-\subsubsection{ Orders - Python Service}
-The Orders microservice was written in python for the management of orders in our application. 
+
+\paragraph { Orders - Python Service}
+The orders microservice was written in python for the management of orders in our application. 
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=10cm, height=6.2cm]{images/orders-cpu-idle-comp.png}
-    \caption{Orders Python Service - Idle state Comparision}
+    \includegraphics[width=9.3cm, height=4.8cm]{images/orders-cpu-idle-comp.png}
+    \caption{Orders Python Service - Idle state Comparison}
 \end{figure}
-
- \emph{Fig: 10 Orders Python Service - Idle state Comparision} Shows the comparision of the CPU utilization and memory consumption by the application on VM and container in the idle state.
-CPU Usage: When in Idle state the CPU usage by the VM fluctuated between 1.4 and 2.1. Whereas in the container, it fluctuated between 0.004 and around 0.006.
-
-Memory Usage:  The Memory usage by the order service in VM started around 41.36MB and increased to around 41.3725 and stayed constant. Whereas in the Container, it started around 8.5 and increased upto 11 and stayed constant for a while.
-
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=10cm, height=6.2cm]{images/orders-cpu-load-comp.png}
-    \caption{Orders Python Service - Load state Comparision}
+    \includegraphics[width=9.3cm, height=4.8cm]{images/orders-cpu-load-comp.png}
+    \caption{Orders Python Service - Load state Comparison}
 \end{figure}
-
-\emph{Fig: 11 Orders Python Service - Load state Comparision} Shows the comparision of the CPU utilization and memory consumption by the application on VM and container in the load state.
-
-CPU Usage: When the load was applied on the Orders service running on the VM, we can see a significant spike in the Usage that ranged between 0 and 60 for a while. Whereas in the container we can also see a significant spike ranging between 0 and around 20. 
-
-Memory Usage:  The Memory usage by the order service in VM started around 41.4MB and increased to around 41.6MB. Whereas in the Container, it started around 14MB and increased upto 18 and stayed there for a while.
-
-By the above comparisions of CPU usage and Memory Usage by Orders service running in VM and Container, both in idle and Load state, we can clearly state that the Orders service runs better and efficient in Container.
-
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=10cm, height=6.2cm]{images/orders-response-comp.png}
-    \caption{Orders Python Service - Response Time Comparision}
+    \includegraphics[width=9.3cm, height=3cm]{images/orders-response-comp.png}
+    \caption{Orders Python Service - Response Time Comparison}
 \end{figure}
-\emph{Fig: 12 Orders Python Service - Response Time Comparision}Shows the comparision of the Response times of the Orders Service when running on VM and Container.
-
-While running the service in VM, 10000 Http requests were sent to check the response times the average time was about 780ms, whereas while running in the Container the average response time was 625ms.
-
-By the above comparision, we can clearly see that the Service runs efficiently when ran in a Container.  
+ \emph{Fig: 10 Orders Python Service - Idle state Comparison} shows the comparison of the CPU utilization and memory consumption by the application on VM and container in the idle state. When in the idle state the CPU usage by the VM fluctuated between 1.4\% and 2.1\%. Whereas in the container, it fluctuated between 0.004\% and around 0.006\%. The Memory usage by the order service in VM started around 41.36\% and increased to around 41.3725\% and stayed constant. Whereas in the container, it started around 8.5\% and increased up to 11\% and stayed constant for a while. \emph{Fig: 11 Orders Python Service - Load state Comparison} shows the comparison of the CPU utilization and memory consumption by the application on VM and container in the load state. When the load was applied on the orders service running on the VM, we can see a significant spike in the CPU usage that ranged around 60\% for a while, whereas in the container we can also see a significant spike ranging around 20\%. The Memory usage by the order service in VM started around 41.4\% and increased to around 41.6\%, whereas in the container, it started around 14\% and increased up to 18\% and stayed there for a while. By the above comparisons of CPU usage and memory usage by the orders service running in VM and container, both in idle and load state, we can clearly state that the orders service consumes less resources in container. \emph{Fig: 12 Orders Python Service - Response Time Comparison}s hows the comparison of the response times of the orders service when running on VM and a container. While running the application in both VM and container, 10000 requests were sent to check the response times the average time was about 780ms on VM, whereas while running on the container the average response time was 625ms. By the above comparison, we can clearly see that the service performs well in a container.  
 
 
-\subsubsection{ UI - JavaScript Service}
+\paragraph{ UI - JavaScript Service}
 
-The UI is handled by a microservice was written in javascript to carryout the user interaction with application. 
-
+The UI is handled by a microservice was written in HTML and JavaScript to carryout the user interaction with application. 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=10cm, height=6.2cm]{images/ui-cpu-idle-comp.png}
-    \caption{UI JavaScript Service - Idle state Comparision}
+    \includegraphics[width=9.3cm, height=4.8cm]{images/ui-cpu-idle-comp.png}
+    \caption{UI JavaScript Service - Idle state Comparison}
 \end{figure} 
-\emph{Fig: 13 UI JS Service - Idle state Comparision} Shows the comparision of the CPU utilization and memory consumption by the application on VM and container in the idle state.
-
-CPU Usage: When in Idle state the CPU usage by the VM fluctuated between 2 and around 4, We can see a spike that ranges between 2 and around 4. Whereas in the container, it fluctuated between 0.001 and around 0.002.
-
-Memory Usage:  The Memory usage by the UI service in VM started around 18MB and increased to around 20.5 and stayed constant. Whereas in the Container, it started around 1 and stayed constant there.
-
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=10cm, height=6.2cm]{images/ui-cpu-load-comp.png}
-    \caption{UI JavaScript Service - Load state Comparision}
+    \includegraphics[width=9.3cm, height=4.8cm]{images/ui-cpu-load-comp.png}
+    \caption{UI JavaScript Service - Load state Comparison}
 \end{figure}
-
-\emph{Fig: 14 UI JS Service - Load state Comparision} Shows the comparision of the CPU utilization and memory consumption by the application on VM and container in the load state.
-
-CPU Usage: When in Load state the CPU usage by the VM fluctuated between 0 and around 25, We can see a spike that ranges between 0 and around 25. Whereas in the container, it fluctuated between 0 and around 5.
-
-Memory Usage:  The Memory usage by the UI service in VM started around 22.53MB and increased to around 22.67 during the load and decreased to 22.65 and stayed constant. Whereas in the Container, it started around 1 and stayed increased to 1.8 during the load.
-
-By the above two comparisions, we can say that the UI JS service runs better in Conatiner than VM, both in idle and load states.
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=10cm, height=6.2cm]{images/book-response-comp.png}
-    \caption{UI JavaScript Service - Response Time Comparision}
+    \includegraphics[width=9.3cm, height=3cm]{images/ui-response-comp.png}
+    \caption{UI JavaScript Service - Response Time Comparison}
 \end{figure}
+\emph{Fig: 13 UI JS Service - Idle state Comparison} shows the comparison of the CPU utilization and memory consumption by the application on VM and container in the idle state. When in the idle state the CPU usage by the VM fluctuated between 2\% and around 4\%, whereas in the container, it fluctuated between 0.001\% and around 0.002\%. The Memory usage by the UI service in VM started around 18\% and increased to around 20.5\% and stayed constant. Whereas in the container, it started around 1\% and stayed constant there. \emph{Fig: 14 UI JS Service - Load state Comparison} shows the comparison of the CPU utilization and memory consumption by the application on VM and container in the load state. When in the load state the CPU usage by the VM fluctuated at around 25\%, whereas in the container, it fluctuated at around 5\%. The Memory usage by the UI service in VM started around 22.53\% and increased to around 22.67\% during the load, whereas in the container, it is around 1.8\% during the load. By the above two comparisons, we can say that the UI JS service consumes less resources in container than VM, both in idle and load states. \emph{Fig: 15 UI JS Service - Response Time Comparison} shows the comparison of the response times of the UI JS Service when running on VM and Container. While running the application in both VM and containers, 10000 requests were sent to check the response times and the average time was about 376ms when running in the VM, whereas while running in the container the average response time was 140ms. By the above comparison, we can clearly see that the UI JS Service performs better when running on a container.
 
-\emph{Fig: 15 UI JS Service - Response Time Comparision}Shows the comparision of the Response times of the UI JS Service when running on VM and Container.
-
-While running the service in VM, 10000 Http requests were sent to check the response times the average time was about 376ms, whereas while running in the Container the average response time was 140ms.
-
-By the above comparision, we can clearly see that the UI JS Service runs efficiently when ran in a Container.
-
-\subsubsection{ Books - Java Service} The Books Microservice was written in Java for the purpose of management of Books in the application.  
+\paragraph{ Books - Java Service} The Books Micro service was written in Java for the purpose of management of books in the application.  
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=10cm, height=6.2cm]{images/book-cpu-idle-comp.png}
-    \caption{Books Java Service - Idle state Comparision}
+    \includegraphics[width=9.3cm, height=4.8cm]{images/book-cpu-idle-comp.png}
+    \caption{Books Java Service - Idle state Comparison}
 \end{figure}
-
-\emph{Fig: 15 Books Java Service - Idle state Comparision} Shows the comparision of the CPU utilization and memory consumption by the application on VM and container in the idle state.
-CPU Usage: When in Idle state the CPU usage by the VM fluctuated between 2.2 and 2.8. Whereas in the container, it fluctuated between 0.03 and around 0.07.
-
-Memory Usage:  The Memory usage by the order service in VM started around 32.92MB and increased to around 33MB and stayed constant. Whereas in the Container, it started around 12.55 and increased upto 12.77.
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=10cm, height=6.2cm]{images/book-cpu-load-comp.png}
-    \caption{Books Java Service - Load state Comparision}
+    \includegraphics[width=9.3cm, height=4.8cm]{images/book-cpu-load-comp.png}
+    \caption{Books Java Service - Load state Comparison}
 \end{figure}
-
-\emph{Fig: 16 Books Java Service - Load state Comparision} Shows the comparision of the CPU utilization and memory consumption by the application on VM and container in the load state.
-
-CPU Usage: When in Load state the CPU usage by the VM fluctuated between 0 and around 50, We can see a spike that ranges between 0 and around 50. Whereas in the container, it fluctuated between 0 and around 17.5.
-
-Memory Usage:  The Memory usage by the UI service in VM started around 32MB and increased to around 40MB during the load and decreased to 39MB and stayed constant. Whereas in the Container, it started around 13 and stayed increased to 17 during the load and decreased to 16.5.
-
-By the above two comparisions, we can say that the Java service runs better in Conatiner than VM, both in idle and Load states.
-
-
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=10cm, height=6.2cm]{images/book-response-comp.png}
-    \caption{Books Java Service - Response Time Comparision}
+    \includegraphics[width=9.3cm, height=3cm]{images/book-response-comp.png}
+    \caption{Books Java Service - Response Time Comparison}
 \end{figure}
+\emph{Fig: 15 Books Java Service - Idle state Comparison} shows the comparison of the CPU utilization and memory consumption by the application on VM and container in the idle state.
+CPU Usage: When in idle state the CPU usage by the VM fluctuated between 2.2\% and 2.8\%,whereas in the container, it fluctuated between 0.03\% and around 0.07\%. The memory usage by the order service in VM is around 33\% in the VM whereas in the container, it started around 12.77\%.\emph{Fig: 16 Books Java Service - Load state Comparison} shows the comparison of the CPU utilization and memory consumption by the application on VM and container in the load state. When in load state the CPU usage of the VM is around 50\%, we can see a spike that ranges between 0 and around 50\%. Whereas in the container, it is around 17.5\%. The memory usage by the UI service in VM started is around 32\% and increased to around 40\% during the load, whereas in the container, it started around 13\% and  increased to 17\% during the load.
+By the above two comparisons, we can say that the Java service runs better in container than VM, both in idle and load states.\emph{Fig: 17 Books Java Service - Response Time Comparison} shows the comparison of the response times of the Java Service when running on VM and Container.
+While running the application in VM and container, 10000 requests were sent to check the response times the average time was about 327ms, whereas while running in the Container the average response time was 417ms. By the above comparison, we can't  actually say that the Java service runs efficiently when ran in a container. Because the response time is more in case of containers. 
 
-\emph{Fig: 17 Books Java Service - Response Time Comparision}Shows the comparision of the Response times of the Java Service when running on VM and Container.
-
-While running the service in VM, 10000 Http requests were sent to check the response times the average time was about 327ms, whereas while running in the Container the average response time was 417ms.
-
-By the above comparision, we can't  actually say that the Java Service runs efficiently when ran in a Container. Because,  Java itself has it's own VM called JVM which almost takes same time on both the cases. 
-
-\subsection{Conclusion}
-With this evaluation , services running on Containers offer several advantages, including faster boot time, lower disk usage, and lower CPU and memory usage. They provide a lightweight and efficient solution for software development and deployment, particularly in resource-constrained environments.
-However, Virtual machines take precidence in the situations where the response time is crucial and Strict Isolation is expected as containerization does consume the physical hardware that voilets the strict isolation contidion.
+\section{Conclusion}
+With this evaluation , services running on containers offer several advantages, including faster boot time, lower disk usage, and lower CPU and memory usage. They provide a lightweight and efficient solution for software development and deployment, particularly in resource-constrained environments.
+However, Virtual machines take precedence in the situations where the response time is crucial and strict isolation is expected. Container runs as a process on the host machine and provides only isolation at the application level. If security is the major concern, VM offers great level of isolation when compared to containers.
 
 \bibliographystyle{unsrt}
 \bibliography{Compiler}
